@@ -68,7 +68,6 @@ atlassian-ide-plugin.xml
 ######################
  
 *.pydevproject
-.project
 .metadata
 *.tmp
 *.bak
