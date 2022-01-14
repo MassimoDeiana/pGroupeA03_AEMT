@@ -9,8 +9,9 @@
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		
 		<properties>
-		  <property name="javax.persistence.jdbc.url" value="http://34.253.160.66:5080/groupeA3"/>
+		  <property name="javax.persistence.jdbc.url" value="http://34.253.160.66:5080/GroupeA3"/>
 		</properties>
 	</persistence-unit>
 	
+
 </persistence>
