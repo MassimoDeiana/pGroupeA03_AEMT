@@ -2,13 +2,15 @@
 <persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">	
 	
 	
-	<persistence-unit name="pGroupeA03" transaction-type="JTA">
+	<persistence-unit name="groupeA3" transaction-type="JTA">
 		  
-		<jta-data-source>jdbc/publications2021</jta-data-source>
-		
-				
+		<jta-data-source>jdbc/groupeA3</jta-data-source>
 				
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		
+		<properties>
+		  <property name="javax.persistence.jdbc.url" value="http://34.253.160.66:5080/groupeA3"/>
+		</properties>
 	</persistence-unit>
 	
 </persistence>
