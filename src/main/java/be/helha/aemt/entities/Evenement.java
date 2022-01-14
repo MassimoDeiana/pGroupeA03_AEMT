@@ -68,14 +68,15 @@ public class Evenement implements Serializable{
 	}
 	
 	public Evenement(String nom, String description, Adresse adresse, Date dateDebut, Date dateFin,
-			int recurence) {
+			int recurrence) {
 		super();
 		this.nom = nom;
 		this.description = description;
 		this.adresse = adresse;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
-		this.recurrence = recurence;
+		this.recurrence = recurrence;
+
 	}
 
 	
@@ -95,8 +96,4 @@ public class Evenement implements Serializable{
 		Evenement other = (Evenement) obj;
 		return Objects.equals(dateDebut, other.dateDebut) && Objects.equals(nom, other.nom);
 	}
-	
-	
-	
-	
 }
