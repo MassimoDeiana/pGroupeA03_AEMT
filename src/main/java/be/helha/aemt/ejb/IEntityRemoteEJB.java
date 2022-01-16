@@ -2,6 +2,8 @@ package be.helha.aemt.ejb;
 
 import java.util.List;
 
+import be.helha.aemt.dao.DAOJTA;
+
 public interface IEntityRemoteEJB<T> {
 	
 	T add(T in);
@@ -12,6 +14,6 @@ public interface IEntityRemoteEJB<T> {
 	
 	T find(int id);
 	
-	List<T> findall();
+	List<T> findAll();
 	
 }

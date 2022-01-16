@@ -8,14 +8,15 @@ import javax.ejb.Stateless;
 import javax.transaction.Transactional;
 
 import be.helha.aemt.dao.EvenementDAO;
+import be.helha.aemt.entities.Activite;
 import be.helha.aemt.entities.Evenement;
 
 @Stateless
 @LocalBean
-public class EvenementEJB implements IEvenementEJB {
+public class EvenementEJB implements IEntityRemoteEJB<Evenement> {
 
 	@EJB
-	EvenementDAO dao;
+	private EvenementDAO dao;
 
 	@Override
 	@Transactional
@@ -41,9 +42,11 @@ public class EvenementEJB implements IEvenementEJB {
 	}
 
 	@Override
-	public List<Evenement> findall() {
+	public List<Evenement> findAll() {
 		return dao.findAll();
 	}
+
+
 	
 	
 	

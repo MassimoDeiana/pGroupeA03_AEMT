@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import be.helha.aemt.entities.Activite;
 import be.helha.aemt.entities.Evenement;
 
 @Stateless
@@ -26,13 +27,13 @@ public class EvenementDAO extends DAOJTA<Evenement>{
 	}
 
 	
-	public Evenement findEvenement(String nom,Date datedebut) {
+	public Evenement findEvenement(String nom,Date dateDebut) {
 		if(nom==null)
 			return null;
-		String qEvenement="Select e from Evenement e where e.nom=:nom && e.datedebut=:datedebut";
+		String qEvenement="Select e from Evenement e where e.nom=:nom and e.dateDebut=:dateDebut";
         Query queryEvenement = em.createQuery(qEvenement);
         queryEvenement.setParameter("nom", nom);
-        queryEvenement.setParameter("datedebut", datedebut);
+        queryEvenement.setParameter("dateDebut", dateDebut);
         List<Evenement> EvenementList = queryEvenement.getResultList();
                  
         return EvenementList.isEmpty()?null : EvenementList.get(0);
