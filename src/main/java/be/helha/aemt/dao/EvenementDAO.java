@@ -1,3 +1,4 @@
+/*
 package be.helha.aemt.dao;
 
 import java.util.Date;
@@ -12,10 +13,13 @@ import javax.transaction.Transactional;
 import be.helha.aemt.entities.Activite;
 import be.helha.aemt.entities.Evenement;
 
+
 @Stateless
 @LocalBean
 public class EvenementDAO extends DAOJTA<Evenement>{
 
+	
+	
 	@Override
 	public Evenement find(Integer id) {
 		if(id==null)
@@ -107,3 +111,5 @@ public class EvenementDAO extends DAOJTA<Evenement>{
 	
 	
 }
+
+	*/

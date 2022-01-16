@@ -17,8 +17,7 @@ public class Atelier extends Activite{
 
 
 	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	private double tarif;
 	
@@ -39,5 +38,5 @@ public class Atelier extends Activite{
 	public void setTarif(double tarif) {
 		this.tarif = tarif;
 	}
-
+*/
 }

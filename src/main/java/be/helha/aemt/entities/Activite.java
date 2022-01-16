@@ -32,82 +32,65 @@ public class Activite implements Serializable{
 	
 	@ManyToMany(cascade = CascadeType.PERSIST,fetch = FetchType.EAGER)
 	private List<Utilisateur> instructeurs;
+	private double tarif;
+	private String type;
 	
-	private Date dateDebut,dateFin;
-	private int recurrence;
+	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	private List<Seance> seances;
 	
-	public Activite(String nom, String description, Adresse adresse, Date dateDebut, Date dateFin,
-			int recurrence) {
+	
+	public Activite(String nom, String description, Adresse adresse, String type, List<Utilisateur> instructeurs, double tarif, List<Seance> seances) {
 		super();
-		this.nom=nom;
-		this.description=description;
-		this.adresse=adresse;
-		this.dateDebut=dateDebut;
-		this.dateFin=dateFin;
-		this.recurrence=recurrence;
+		this.nom = nom;
+		this.description = description;
+		this.adresse = adresse;
+		this.type=type;
+		this.instructeurs = instructeurs;
+		this.tarif = tarif;
+		this.seances = seances;
 	}
 	
-	public Activite(String nom, String description, Adresse adresse, Date dateDebut, Date dateFin,List<Utilisateur> instructeurs,
-			int recurrence) {
+	public Activite(String nom, String description, Adresse adresse, String type) {
 		super();
-		this.nom=nom;
-		this.description=description;
-		this.adresse=adresse;
-		this.dateDebut=dateDebut;
-		this.dateFin=dateFin;
-		this.instructeurs=instructeurs;
-		this.recurrence=recurrence;
+		this.nom = nom;
+		this.description = description;
+		this.adresse = adresse;
+		this.type=type;
 	}
-	
 	
 	public Activite() {}
-	
-	
-	
+
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getNom() {
 		return nom;
 	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public Adresse getAdresse() {
 		return adresse;
 	}
+
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
-	public Date getDateDebut() {
-		return dateDebut;
-	}
-	public void setDateDebut(Date dateDebut) {
-		this.dateDebut = dateDebut;
-	}
-	public Date getDateFin() {
-		return dateFin;
-	}
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
-	}
-
-	public int getRecurrence() {
-		return recurrence;
-	}
-	public void setRecurrence(int recurrence) {
-		this.recurrence = recurrence;
-	}
-	
 
 	public List<Utilisateur> getInstructeurs() {
 		return instructeurs;
@@ -117,10 +100,35 @@ public class Activite implements Serializable{
 		this.instructeurs = instructeurs;
 	}
 
+	public double getTarif() {
+		return tarif;
+	}
+
+	public void setTarif(double tarif) {
+		this.tarif = tarif;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public List<Seance> getSeances() {
+		return seances;
+	}
+
+	public void setSeances(List<Seance> seances) {
+		this.seances = seances;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(dateDebut, nom);
+		return Objects.hash(nom, seances, type);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -130,6 +138,14 @@ public class Activite implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Activite other = (Activite) obj;
-		return Objects.equals(dateDebut, other.dateDebut) && Objects.equals(nom, other.nom);
+		return Objects.equals(nom, other.nom) && Objects.equals(seances, other.seances)
+				&& Objects.equals(type, other.type);
 	}
+
+	
+	
+	
+	
+	
+	
 }

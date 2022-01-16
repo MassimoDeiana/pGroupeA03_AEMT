@@ -12,8 +12,7 @@ import javax.persistence.ManyToMany;
 public class Cours extends Activite{
 	
 	/**
-	 * 
-	 */
+	 
 	private static final long serialVersionUID = 1L;
 
 	private double tarif;
@@ -36,6 +35,6 @@ public class Cours extends Activite{
 	public void setTarif(double tarif) {
 		this.tarif = tarif;
 	}
-
+*/
 
 }

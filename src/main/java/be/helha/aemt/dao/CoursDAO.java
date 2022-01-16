@@ -1,3 +1,4 @@
+/*
 package be.helha.aemt.dao;
 
 import java.util.ArrayList;
@@ -116,3 +117,4 @@ public class CoursDAO extends DAOJTA<Cours> {
 	}
 
 }
+*/

@@ -1,11 +1,16 @@
 package be.helha.aemt.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Utilisateur implements Serializable {
@@ -24,6 +29,9 @@ public class Utilisateur implements Serializable {
     private int age;
     private String role;
     
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Activite> activites;
+    
     public Utilisateur() {
         // TODO Auto-generated constructor stub
     }
@@ -36,6 +44,18 @@ public class Utilisateur implements Serializable {
         this.prenom = prenom;
         this.age = age;
         this.role = role;
+        this.activites=new ArrayList<Activite>();
+    }
+    
+    public Utilisateur(String mail, String mdp, String nom, String prenom, int age, String role, List<Activite> activites) {
+        super();
+        this.mail = mail;
+        this.mdp = mdp;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.age = age;
+        this.role = role;
+        this.activites=activites;
     }
     
     public Integer getId() {
@@ -93,8 +113,18 @@ public class Utilisateur implements Serializable {
     public void setRole(String role) {
         this.role = role;
     }
+    
+    
 
-    @Override
+    public List<Activite> getActivites() {
+		return activites;
+	}
+
+	public void setActivites(List<Activite> activites) {
+		this.activites = activites;
+	}
+
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;

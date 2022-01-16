@@ -1,19 +1,26 @@
 package be.helha.aemt.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import be.helha.aemt.entities.Activite;
+import be.helha.aemt.entities.Seance;
 import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
 @LocalBean
 public class UtilisateurDAO extends DAOJTA<Utilisateur> {
-
+	
+	@EJB
+	private ActiviteDAO aDao;
+	
     public Utilisateur find(Integer id) {
         if(id == null) 
             return null;
@@ -56,6 +63,26 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
         if(uBD != null) {
             return null;
         }
+        
+
+		List<Activite> list = new ArrayList<Activite>();
+		
+		for (Activite u : t.getActivites()) {
+			
+			Activite uDB = aDao.findByActivite(u);
+		
+			if(uDB == null)
+			{
+				aDao.add(u);
+			}
+			
+			list.add(aDao.findByActivite(u));
+			
+		}
+		
+		if(list != null) {
+			t.setActivites(list);
+		}
 
         em.persist(t);
 
