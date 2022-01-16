@@ -41,16 +41,32 @@ public class ActiviteDAO extends DAOJTA<Activite> {
         if(t == null) {
             return null;
         }
-        String q = "Select t from Activite t where t.nom=:nom and t.type=:type and t.seances=:seances";
-        Query querry = em.createQuery(q);
+        if(!t.getType().equals("evenement"))
+        {
+            String q = "Select t from Activite t where t.nom=:nom and t.type=:type and t.seances in :seances";
+            Query querry = em.createQuery(q);
 
-        querry.setParameter("nom", t.getNom());
-        querry.setParameter("type", t.getType());
-        querry.setParameter("seances", t.getSeances());
-        
-        List<Activite> list = querry.getResultList();
+            querry.setParameter("nom", t.getNom());
+            querry.setParameter("type", t.getType());
+     
+            querry.setParameter("seances", t.getSeances());
+            
+            List<Activite> list = querry.getResultList();
+            
+            return list.isEmpty()?null : list.get(0);
+        }
+        else
+        {
+            String q = "Select t from Activite t where t.nom=:nom and t.type=:type";
+            Query querry = em.createQuery(q);
 
-        return list.isEmpty()?null : list.get(0);
+            querry.setParameter("nom", t.getNom());
+            querry.setParameter("type", t.getType());
+            
+            List<Activite> list = querry.getResultList();
+            
+            return list.isEmpty()?null : list.get(0);
+        }
 	}
 
 	@Override
