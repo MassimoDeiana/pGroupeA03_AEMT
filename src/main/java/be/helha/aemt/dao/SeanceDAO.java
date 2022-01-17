@@ -30,11 +30,11 @@ public class SeanceDAO extends DAOJTA<Seance> {
         if(t == null) {
             return null;
         }
-        String q = "Select t from Seance t where t.dateDebut=:dateDebut and t.duree=:duree";
+        String q = "Select t from Seance t where t.dateDebut=:dateDebut and t.dateFin=:dateFin";
         Query querry = em.createQuery(q);
 
         querry.setParameter("dateDebut", t.getDateDebut());
-        querry.setParameter("duree", t.getDuree());
+        querry.setParameter("dateFin", t.getDateFin());
 
         List<Seance> list = querry.getResultList();
 
@@ -68,6 +68,7 @@ public class SeanceDAO extends DAOJTA<Seance> {
 	}
 
 	@Override
+	@Transactional
 	public Seance update(Seance t1, Seance t2) {
 		// TODO Auto-generated method stub
 		return null;

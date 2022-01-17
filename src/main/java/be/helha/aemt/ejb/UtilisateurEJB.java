@@ -3,42 +3,38 @@ package be.helha.aemt.ejb;
 import java.util.List;
 
 import javax.ejb.EJB;
-import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;
 
-import be.helha.aemt.dao.ActiviteDAO;
-import be.helha.aemt.entities.Activite;
+import be.helha.aemt.dao.UtilisateurDAO;
 import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
-public class ActiviteEJB implements IActiviteRemoteEJB {
+public class UtilisateurEJB implements IUtilisateurRemoteEJB {
 
 	@EJB
-	private ActiviteDAO dao;
-
+	private UtilisateurDAO dao;
+	
 	@Override
-	public Activite find(Integer id) {
+	public Utilisateur find(Integer id) {
 		return dao.find(id);
 	}
 
 	@Override
-	public List<Activite> findAll() {
+	public List<Utilisateur> findAll() {
 		return dao.findAll();
 	}
 
 	@Override
 	@Transactional
-	public Activite add(Activite u) {
+	public Utilisateur add(Utilisateur u) {
 		return dao.add(u);
 	}
 
 	@Override
 	@Transactional
-	public Activite delete(Activite u) {
+	public Utilisateur delete(Utilisateur u) {
 		return dao.delete(u);
 	}
 
-
-	
 }

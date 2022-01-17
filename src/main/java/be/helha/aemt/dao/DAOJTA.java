@@ -25,7 +25,6 @@ public abstract class DAOJTA<T> implements IDAOJTA<T>{
 	public DAOJTA() {
 		
 	}
-	
-	
+
     
 }
