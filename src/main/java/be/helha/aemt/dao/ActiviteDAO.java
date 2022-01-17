@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -12,6 +14,8 @@ import be.helha.aemt.entities.Activite;
 import be.helha.aemt.entities.Seance;
 import be.helha.aemt.entities.Utilisateur;
 
+@Stateless
+@LocalBean
 public class ActiviteDAO extends DAOJTA<Activite> {
 
 	@EJB

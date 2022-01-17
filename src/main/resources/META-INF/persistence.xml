@@ -6,10 +6,20 @@
 		  
 		<jta-data-source>jdbc/groupeA3</jta-data-source>
 				
+		<class>be.helha.aemt.entities.Activite</class>
+        <class>be.helha.aemt.entities.Adresse</class>
+        <class>be.helha.aemt.entities.Seance</class>
+        <class>be.helha.aemt.entities.Utilisateur</class>
+				
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		
 		<properties>
-		  <property name="javax.persistence.jdbc.url" value="http://34.253.160.66:5080/GroupeA3"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		  	<property name="javax.persistence.jdbc.url" value="jbdc:mysql://localhost:3306/dba3"/>
+          	<property name="javax.persistence.schema-generation.database.action" value="create"/>
+
+            <property name="javax.persistence.jdbc.user" value="test"/>
+            <property name="javax.persistence.jdbc.password" value="test"/>
 		</properties>
 	</persistence-unit>
 	

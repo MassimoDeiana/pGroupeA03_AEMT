@@ -2,6 +2,8 @@ package be.helha.aemt.dao;
 
 import java.util.List;
 
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
@@ -9,6 +11,8 @@ import javax.transaction.Transactional;
 import be.helha.aemt.entities.Seance;
 import be.helha.aemt.entities.Utilisateur;
 
+@Stateless
+@LocalBean
 public class SeanceDAO extends DAOJTA<Seance> {
 
 	@Override

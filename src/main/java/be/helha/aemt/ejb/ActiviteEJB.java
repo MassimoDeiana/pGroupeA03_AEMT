@@ -8,7 +8,6 @@ import javax.ejb.Stateless;
 import javax.transaction.Transactional;
 
 import be.helha.aemt.dao.ActiviteDAO;
-import be.helha.aemt.dao.EvenementDAO;
 import be.helha.aemt.entities.Activite;
 import be.helha.aemt.entities.Evenement;
 
@@ -43,7 +42,7 @@ public class ActiviteEJB implements IActiviteEJB {
 	}
 
 	@Override
-	public List<Activite> findall() {
+	public List<Activite> findAll() {
 		return dao.findAll();
 	}
 	
