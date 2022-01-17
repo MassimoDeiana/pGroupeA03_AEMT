@@ -26,7 +26,6 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
             return null;
 
         Utilisateur find = em.find(Utilisateur.class, id);
-        em.detach(find);
 
         return find;
     }
@@ -45,6 +44,7 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
         return utilisateurList.isEmpty()?null : utilisateurList.get(0);
     }
 
+    @Transactional
     public List<Utilisateur> findAll() {
         String aFind = "SELECT u FROM Utilisateur u";
         TypedQuery<Utilisateur> qFind = em.createQuery(aFind, Utilisateur.class);
@@ -99,11 +99,11 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
             return null;
 
         em.remove(uDB);
-
         return uDB;
     }
 
 	@Override
+	@Transactional
 	public Utilisateur update(Utilisateur t1, Utilisateur t2) {
 		// TODO Auto-generated method stub
 		return null;

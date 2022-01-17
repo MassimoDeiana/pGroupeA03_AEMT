@@ -23,12 +23,12 @@ public class Seance implements Serializable {
 	private Integer id;
 
 	private Date dateDebut;
-	private Date duree;
+	private Date dateFin;
 	
-	public Seance(Date dateDebut, Date duree) {
+	public Seance(Date dateDebut, Date dateFin) {
 		super();
 		this.dateDebut = dateDebut;
-		this.duree = duree;
+		this.dateFin = dateFin;
 	}
 	
 	public Seance() {}
@@ -50,17 +50,17 @@ public class Seance implements Serializable {
 		this.dateDebut = dateDebut;
 	}
 
-	public Date getDuree() {
-		return duree;
+	public Date getDateFin() {
+		return dateFin;
 	}
 
-	public void setDuree(Date duree) {
-		this.duree = duree;
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(dateDebut, duree);
+		return Objects.hash(dateDebut, dateFin);
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class Seance implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Seance other = (Seance) obj;
-		return Objects.equals(dateDebut, other.dateDebut) && Objects.equals(duree, other.duree);
+		return Objects.equals(dateDebut, other.dateDebut) && Objects.equals(dateFin, other.dateFin);
 	}
 	
 	
