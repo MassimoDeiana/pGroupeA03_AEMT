@@ -3,9 +3,14 @@
 	
 	
 	<persistence-unit name="groupeA3" transaction-type="JTA">
-		  
+		
 		<jta-data-source>jdbc/groupeA3</jta-data-source>
-				
+		
+		<class>be.helha.aemt.entities.Activite</class>
+		<class>be.helha.aemt.entities.Adresse</class>
+		<class>be.helha.aemt.entities.Seance</class>
+		<class>be.helha.aemt.entities.Utilisateur</class>
+		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		
 		<properties>
