@@ -2,8 +2,13 @@ package be.helha.aemt.dao;
 
 import java.util.List;
 
+import javax.ejb.Remote;
+
+@Remote
 public interface IDAOJTA<T> {
 
+	
+	
 	public T find(Integer id);
 
 	public List<T> findAll();

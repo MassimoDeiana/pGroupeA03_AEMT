@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,12 +30,10 @@ public class Utilisateur implements Serializable {
     private int age;
     private String role;
     
-    @OneToMany(cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Activite> activites;
     
-    public Utilisateur() {
-        // TODO Auto-generated constructor stub
-    }
+ 
     
     public Utilisateur(String mail, String mdp, String nom, String prenom, int age, String role) {
         super();
@@ -47,15 +46,9 @@ public class Utilisateur implements Serializable {
         this.activites=new ArrayList<Activite>();
     }
     
-    public Utilisateur(String mail, String mdp, String nom, String prenom, int age, String role, List<Activite> activites) {
-        super();
-        this.mail = mail;
-        this.mdp = mdp;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.age = age;
-        this.role = role;
-        this.activites=activites;
+   
+    public Utilisateur() {
+        // TODO Auto-generated constructor stub
     }
     
     public Integer getId() {
@@ -123,6 +116,21 @@ public class Utilisateur implements Serializable {
 	public void setActivites(List<Activite> activites) {
 		this.activites = activites;
 	}
+	
+	public boolean addCours(Activite t) {
+		if(t==null)
+		{
+			System.out.println("null");
+			return false;
+		}
+			
+		if(activites.contains(t))
+			return false;
+		System.out.println("test");
+		return activites.add(t);
+		
+	}
+	
 
 	@Override
     public int hashCode() {
@@ -148,6 +156,14 @@ public class Utilisateur implements Serializable {
             return false;
         return true;
     }
+
+
+	@Override
+	public String toString() {
+		return "Utilisateur [mail=" + mail + ", mdp=" + mdp + ", nom=" + nom + ", prenom=" + prenom + ", activites="
+				+ activites.toString() + "]";
+	}
+    
     
     
     

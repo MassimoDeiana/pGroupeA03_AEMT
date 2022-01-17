@@ -12,6 +12,7 @@ import be.helha.aemt.entities.Utilisateur;
 @Stateless
 public class UtilisateurEJB implements IUtilisateurRemoteEJB {
 
+<<<<<<< HEAD
 	@EJB
 	private UtilisateurDAO dao;
 	
@@ -36,5 +37,32 @@ public class UtilisateurEJB implements IUtilisateurRemoteEJB {
 	public Utilisateur delete(Utilisateur u) {
 		return dao.delete(u);
 	}
+=======
+    @EJB
+    private UtilisateurDAO dao;
+
+    @Override
+    public Utilisateur find(Integer id) {
+        return dao.find(id);
+    }
+
+    @Override
+    @Transactional
+    public List<Utilisateur> findAll() {
+        return dao.findAll();
+    }
+
+    @Override
+    @Transactional
+    public Utilisateur add(Utilisateur u) {
+        return dao.add(u);
+    }
+
+    @Override
+    @Transactional
+    public Utilisateur delete(Utilisateur u) {
+        return dao.delete(u);
+    }
+>>>>>>> 3158ebe35b456c92f0f03c3995347e4443c6b332
 
 }
