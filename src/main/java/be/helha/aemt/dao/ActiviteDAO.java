@@ -1,16 +1,24 @@
 package be.helha.aemt.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 
 import be.helha.aemt.entities.Activite;
+import be.helha.aemt.entities.Seance;
+import be.helha.aemt.entities.Utilisateur;
 
 public class ActiviteDAO extends DAOJTA<Activite> {
 
+	@EJB
+	private SeanceDAO sDao;
+	
 	@Override
 	public Activite find(Integer id) {
-		
 		if(id==null) 
 			return null;
 		
@@ -22,55 +30,84 @@ public class ActiviteDAO extends DAOJTA<Activite> {
 
 	@Override
 	public List<Activite> findAll() {
-
 		String aFind="SELECT a FROM Activite a";
         TypedQuery<Activite> qFind=em.createQuery(aFind,Activite.class);
 		List<Activite> results = qFind.getResultList();
         
         return results.isEmpty()?null : results;
 	}
+	
+	public Activite findByActivite(Activite t) {
+        if(t == null) {
+            return null;
+        }
+        if(!t.getType().equals("evenement"))
+        {
+            String q = "Select t from Activite t where t.nom=:nom and t.type=:type and t.seances in :seances";
+            Query querry = em.createQuery(q);
+
+            querry.setParameter("nom", t.getNom());
+            querry.setParameter("type", t.getType());
+     
+            querry.setParameter("seances", t.getSeances());
+            
+            List<Activite> list = querry.getResultList();
+            
+            return list.isEmpty()?null : list.get(0);
+        }
+        else
+        {
+            String q = "Select t from Activite t where t.nom=:nom and t.type=:type";
+            Query querry = em.createQuery(q);
+
+            querry.setParameter("nom", t.getNom());
+            querry.setParameter("type", t.getType());
+            
+            List<Activite> list = querry.getResultList();
+            
+            return list.isEmpty()?null : list.get(0);
+        }
+	}
 
 	@Override
+	@Transactional
 	public Activite add(Activite t) {
+        if(t == null)
+            return null;
 
-		if(t==null)
-			return null;
-        
-        em.persist(t);
-		return t;
+        Activite uBD = findByActivite(t);
+
+        if(uBD != null) 
+            return null;
+
+		List<Seance> list = new ArrayList<Seance>();
 		
+		if(!t.getType().equals("evenement")) {
+			for (Seance u : t.getSeances()) {			
+				Seance aDB = sDao.findByDate(u);
+				if(aDB == null)
+					sDao.add(u);
+				list.add(sDao.findByDate(u));
+			}
+			if(list != null) {
+				t.setSeances(list);
+			}
+		}
+
+        em.persist(t);
+
+        return t;
 	}
 
 	@Override
 	public Activite update(Activite t1, Activite t2) {
-
-		Activite aDB1 = find(t1.getId());
-		Activite aDB2 = find(t2.getId());
-		
-		if(aDB1==null || aDB1.getId()==null || t2==null || aDB2!=null)
-			return null;
-		
-		 if(!em.contains(aDB1))
-	            return null;
-		 
-		aDB1.setNom(t2.getNom());
-		aDB1.setAdresse(t2.getAdresse());
-		aDB1.setDescription(t2.getDescription());
-		aDB1.setDateDebut(t2.getDateDebut());
-		aDB1.setDateFin(t2.getDateFin());
-		aDB1.setInstructeur(t2.getInstructeur());
-		aDB1.setTarif(t2.getTarif());
-		aDB1.setRecurrence(t2.getRecurrence());
-		aDB1.setType(t2.getType());
-		   
-        em.merge(aDB1);
-
-		return aDB1;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
+	@Transactional
 	public Activite delete(Activite t) {
-
 		Activite aDB = find(t.getId());
 
         if(aDB==null)
