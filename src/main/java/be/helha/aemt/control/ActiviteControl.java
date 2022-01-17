@@ -1,13 +1,13 @@
 package be.helha.aemt.control;
 
-import java.util.List; 
+import java.util.List;  
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.IActiviteEJB;
+import be.helha.aemt.ejb.IActiviteRemoteEJB;
 import be.helha.aemt.entities.Activite;
 
 @Named
@@ -15,7 +15,7 @@ import be.helha.aemt.entities.Activite;
 public class ActiviteControl {
 
 	@EJB
-	private IActiviteEJB ejb;
+	private IActiviteRemoteEJB ejb;
     private Activite activite;
     private Activite a= new Activite();
     
