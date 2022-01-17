@@ -1,5 +1,7 @@
 package be.helha.aemt.ejb;
 
-public interface IAdresseRemoteEJB {
+import be.helha.aemt.entities.Adresse;
+
+public interface IAdresseRemoteEJB extends IEntityRemoteEJB<Adresse> {
 
 }

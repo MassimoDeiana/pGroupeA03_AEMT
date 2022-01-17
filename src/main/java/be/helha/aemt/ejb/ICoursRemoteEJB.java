@@ -1,5 +1,7 @@
 package be.helha.aemt.ejb;
 
-public interface ICoursRemoteEJB {
+import be.helha.aemt.entities.Cours;
+
+public interface ICoursRemoteEJB extends IEntityRemoteEJB<Cours> {
 
 }

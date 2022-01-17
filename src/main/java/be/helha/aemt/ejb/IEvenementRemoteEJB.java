@@ -1,5 +1,7 @@
 package be.helha.aemt.ejb;
 
-public interface IEvenementRemoteEJB {
+import be.helha.aemt.entities.Evenement;
+
+public interface IEvenementRemoteEJB extends IEntityRemoteEJB<Evenement> {
 
 }

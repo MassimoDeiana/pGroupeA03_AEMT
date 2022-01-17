@@ -5,22 +5,14 @@
 	<persistence-unit name="groupeA3" transaction-type="JTA">
 		
 		<jta-data-source>jdbc/groupeA3</jta-data-source>
-<<<<<<< HEAD
 		
 		<class>be.helha.aemt.entities.Activite</class>
 		<class>be.helha.aemt.entities.Adresse</class>
+		<class>be.helha.aemt.entities.Atelier</class>
+		<class>be.helha.aemt.entities.Cours</class>
+		<class>be.helha.aemt.entities.Evenement</class>
 		<class>be.helha.aemt.entities.Seance</class>
 		<class>be.helha.aemt.entities.Utilisateur</class>
-		
-=======
-									
-		<class>be.helha.aemt.entities.Utilisateur</class>  
-		<class>be.helha.aemt.entities.Activite</class>
-		<class>be.helha.aemt.entities.Seance</class>
-		<class>be.helha.aemt.entities.Adresse</class>
-		
-				
->>>>>>> 3158ebe35b456c92f0f03c3995347e4443c6b332
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 	
 		<properties>

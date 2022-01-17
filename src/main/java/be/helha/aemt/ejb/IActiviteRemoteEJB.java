@@ -1,5 +1,7 @@
 package be.helha.aemt.ejb;
 
-public interface IActiviteRemoteEJB {
+import be.helha.aemt.entities.Activite;
+
+public interface IActiviteRemoteEJB extends IEntityRemoteEJB<Activite> {
 
 }
