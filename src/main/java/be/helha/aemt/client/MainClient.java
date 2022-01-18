@@ -12,7 +12,7 @@ public class MainClient {
 	{
 		
 		Adresse adresse = new Adresse("R1", "N1", "V1", 7000);
-		Utilisateur u = new Utilisateur("ThierryRoland@gmail.com", "password1", "Roland", "Thierry", 20, "admin");
+		Utilisateur u = new Utilisateur("ThierryRoland@gmail.com", "password1", "Roland", "Thierry", "admin");
 //		Article a1 = new Article("Arti1",10);
 //		Commande c = new Commande();
 //		c.ajouteArticle(a1);

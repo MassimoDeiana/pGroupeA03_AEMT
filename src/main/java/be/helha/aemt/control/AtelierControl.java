@@ -1,5 +1,7 @@
 package be.helha.aemt.control;
 
+import java.util.List;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+import be.helha.aemt.ejb.IAtelierRemoteEJB;
+import be.helha.aemt.entities.Atelier;
 import be.helha.aemt.ejb.IAdresseRemoteEJB;
 import be.helha.aemt.ejb.IAtelierRemoteEJB;
 import be.helha.aemt.ejb.ISeanceRemoteEJB;

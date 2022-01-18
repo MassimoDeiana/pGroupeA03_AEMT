@@ -39,4 +39,14 @@ public class UtilisateurEJB implements IUtilisateurRemoteEJB {
 		return dao.delete(u);
 	}
 
+	@Override
+	public Utilisateur findByMail(Utilisateur u) {
+		return dao.findByMail(u);
+	}
+
+	@Override
+	public Utilisateur update(Utilisateur u1, Utilisateur u2) {
+		return dao.updateActivites(u1, u2);
+	}
+
 }

@@ -5,37 +5,79 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import be.helha.aemt.ejb.IActiviteRemoteEJB;
+import be.helha.aemt.ejb.IAtelierRemoteEJB;
+import be.helha.aemt.ejb.ICoursRemoteEJB;
+import be.helha.aemt.ejb.IEvenementRemoteEJB;
+import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
 import be.helha.aemt.entities.Activite;
+import be.helha.aemt.entities.Atelier;
+import be.helha.aemt.entities.Cours;
+import be.helha.aemt.entities.Evenement;
+import be.helha.aemt.entities.Utilisateur;
 
 @Named
 @RequestScoped
 public class ActiviteControl {
 
 	@EJB
-	private IActiviteRemoteEJB ejb;
-    private Activite activite;
-    private Activite a= new Activite();
+	private IEvenementRemoteEJB evenementEJB;
+	
+	@EJB
+	private ICoursRemoteEJB coursEJB;
+	
+	@EJB
+	private IAtelierRemoteEJB atelierEJB;
+	
+	@EJB
+	private IUtilisateurRemoteEJB utilisateurEJB;
+	
+	private Activite activite;
+	
+	private Utilisateur utilisateur;
     
-    @PostConstruct
-    public void init() {
-    	activite= new Activite();
-    	a=activite;
+    public List<Evenement> doFindAllEvenement() {
+        return evenementEJB.findAll();
     }
     
-    public List<Activite> findAll() {
-        return ejb.findAll();
+    public List<Cours> doFindAllCours() {
+        return coursEJB.findAll();
     }
     
-    public String doGetDetails(Activite act) {
-		activite = act;
-        return "detail";
+    public List<Atelier> doFindAllAtelier() {
+        return atelierEJB.findAll();
     }
     
-    public void remove(Activite activite) {
-	       ejb.delete(activite);
-	    }
+    public String doGetDetails(Activite a) {
+    	activite = a;
+    	utilisateur = new Utilisateur(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
+    	Utilisateur uInit = utilisateurEJB.findByMail(utilisateur);
+//TODO    	utilisateur.setActivites(uInit.getActivites());
+    	System.out.println(utilisateur);
+    	utilisateur.addActivite(activite);
+    	utilisateurEJB.update(uInit, utilisateur);
+    	
+    	return "detailActivite";
+    }
+    
+    public Activite getActivite() {
+		return activite;
+	}
+    
+    public void doParticiper() {
+    	Utilisateur tmp = new Utilisateur();
+    	tmp.setMail(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
+    	Utilisateur uInit = utilisateurEJB.findByMail(tmp);
+    	utilisateur = uInit;
+    	utilisateur.addActivite(activite);
+    	System.out.println(uInit.getActivites());
+    	utilisateurEJB.update(uInit, utilisateur);
+    	System.out.println(uInit.getActivites());
+    	
+    }
+    
 	
 }

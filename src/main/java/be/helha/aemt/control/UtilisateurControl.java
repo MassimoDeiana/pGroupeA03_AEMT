@@ -1,5 +1,9 @@
 package be.helha.aemt.control;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -16,8 +20,8 @@ public class UtilisateurControl {
 
 	@EJB
 	private IUtilisateurRemoteEJB ejb;
+	
 	private Utilisateur utilisateur;
-	private Utilisateur t = new Utilisateur();
 	
 	@PostConstruct
 	public void init() {
@@ -25,7 +29,8 @@ public class UtilisateurControl {
 		t=utilisateur;
 	}
 	
-	public String add() {
+	public String doAdd() {
+		utilisateur.setRole("utilisateur");
 		ejb.add(utilisateur);
 		return "listUtilisateur";
 	}
@@ -57,15 +62,6 @@ public class UtilisateurControl {
 		utilisateur=pub;
 		return "updateUtilisateur";
 	}
-	
-	/*
-	public String update() {
-		System.out.println(t.toString());
-		System.out.println(utilisateur.toString());
-		ejb.update(t, utilisateur);
-		return "listUtilisateur";
-	}
-	*/
 	
 	
 }

@@ -8,26 +8,31 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import be.helha.aemt.ejb.EntityEJB;
+import be.helha.aemt.ejb.IAtelierRemoteEJB;
 import be.helha.aemt.ejb.IEntityRemoteEJB;
 import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
 import be.helha.aemt.ejb.UtilisateurEJB;
+import be.helha.aemt.entities.Atelier;
 import be.helha.aemt.entities.Utilisateur;
 
-@Named //injection avec le nom navigationControl
+@Named
 @RequestScoped
 public class NavigationControl {
 	
 	
 	@EJB
-	IUtilisateurRemoteEJB ejb;
+	IUtilisateurRemoteEJB utilisateurEJB;
+	
+	@EJB
+	IAtelierRemoteEJB atelierEJB;
 	
 	
 	public List<Utilisateur> doNext() {
-		System.out.println(ejb.findAll());
-		return ejb.findAll();
+		System.out.println(utilisateurEJB.findAll());
+		return utilisateurEJB.findAll();
 
 	}
-
+	
 	
 
 }

@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -27,27 +26,32 @@ public class Utilisateur implements Serializable {
     private String mdp;
     private String nom;
     private String prenom;
-    private int age;
     private String role;
     
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private List<Activite> activites;
     
- 
-    
-    public Utilisateur(String mail, String mdp, String nom, String prenom, int age, String role) {
+    public Utilisateur(String mail, String mdp, String nom, String prenom, String role) {
         super();
         this.mail = mail;
         this.mdp = mdp;
         this.nom = nom;
         this.prenom = prenom;
-        this.age = age;
         this.role = role;
         this.activites=new ArrayList<Activite>();
     }
     
-   
-    public Utilisateur() {
+    
+    
+    public Utilisateur(String mail) {
+		super();
+		this.mail = mail;
+		this.activites=new ArrayList<Activite>();
+	}
+
+
+
+	public Utilisateur() {
         // TODO Auto-generated constructor stub
     }
     
@@ -91,14 +95,6 @@ public class Utilisateur implements Serializable {
         this.prenom = prenom;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getRole() {
         return role;
     }
@@ -107,8 +103,6 @@ public class Utilisateur implements Serializable {
         this.role = role;
     }
     
-    
-
     public List<Activite> getActivites() {
 		return activites;
 	}
@@ -117,20 +111,14 @@ public class Utilisateur implements Serializable {
 		this.activites = activites;
 	}
 	
-	public boolean addCours(Activite t) {
+	public boolean addActivite(Activite t) {
 		if(t==null)
-		{
-			System.out.println("null");
 			return false;
-		}
 			
 		if(activites.contains(t))
 			return false;
-		System.out.println("test");
 		return activites.add(t);
-		
 	}
-	
 
 	@Override
     public int hashCode() {
@@ -160,11 +148,8 @@ public class Utilisateur implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Utilisateur [mail=" + mail + ", mdp=" + mdp + ", nom=" + nom + ", prenom=" + prenom + ", activites="
-				+ activites.toString() + "]";
+		return prenom + " " + nom;
 	}
-    
-    
     
     
 }

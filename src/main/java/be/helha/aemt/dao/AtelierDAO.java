@@ -53,7 +53,6 @@ public class AtelierDAO extends DAOJTA<Atelier> {
         List<Atelier> EvenementList = queryEvenement.getResultList();
                  
         return EvenementList.isEmpty()?null : EvenementList.get(0);
-		
 	}
 
 	@Override
@@ -79,7 +78,6 @@ public class AtelierDAO extends DAOJTA<Atelier> {
 		if(eBD!=null)
 			return null;
 		
-
 		Adresse aDB = aDAO.findByAdresse(t.getAdresse());
 			if(aDB != null)
 				t.setAdresse(aDB);
@@ -93,11 +91,8 @@ public class AtelierDAO extends DAOJTA<Atelier> {
 		
 		if(sDB != null)
 			t.setSeance(sDB);
-		
-				
         em.persist(t);
 		return t;
-		
 	}
 
 	@Override
