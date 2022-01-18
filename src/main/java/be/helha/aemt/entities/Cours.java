@@ -1,9 +1,11 @@
 package be.helha.aemt.entities;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -47,7 +49,10 @@ public class Cours extends Activite{
 	public Cours() {}
 
 	public List<Seance> getSeances() {
-		return seances;
+		List<Seance> sortedList = seances.stream()
+			.sorted(Comparator.comparing(Seance::getDateDebut))
+			.collect(Collectors.toList());
+		return sortedList;
 	}
 
 	public void setSeances(List<Seance> seances) {
@@ -61,14 +66,13 @@ public class Cours extends Activite{
 		if(seances.contains(t))
 			return false;
 		return seances.add(t);
-		
 	}
 
-	public Utilisateur getInstructeurs() {
+	public Utilisateur getInstructeur() {
 		return instructeur;
 	}
 
-	public void setInstructeurs(Utilisateur instructeur) {
+	public void setInstructeur(Utilisateur instructeur) {
 		this.instructeur = instructeur;
 	}
 

@@ -32,7 +32,6 @@ public class EvenementDAO extends DAOJTA<Evenement>{
 		
 		return find;
 	}
-
 	
 	public Evenement findEvenement(Evenement e) {
 		if(e == null)
@@ -44,7 +43,6 @@ public class EvenementDAO extends DAOJTA<Evenement>{
         List<Evenement> EvenementList = queryEvenement.getResultList();
                  
         return EvenementList.isEmpty()?null : EvenementList.get(0);
-		
 	}
 	
 	@Override
@@ -71,8 +69,6 @@ public class EvenementDAO extends DAOJTA<Evenement>{
 		
 		if(sDB != null)
 			t.setSeance(sDB);
-		
-		
 		
 		em.persist(t);
 		return t;
@@ -118,8 +114,6 @@ public class EvenementDAO extends DAOJTA<Evenement>{
 	}
 
 
-	
-	
 }
 
 	

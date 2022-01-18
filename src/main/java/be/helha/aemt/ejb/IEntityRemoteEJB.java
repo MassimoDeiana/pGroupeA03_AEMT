@@ -14,8 +14,6 @@ public interface IEntityRemoteEJB<T> {
 	
 	T delete(T in);
 	
-	//T update(T in1, T in2);
-	
 	T find(Integer id);
 	
 	List<T> findAll();

@@ -49,7 +49,6 @@ public class CoursDAO extends DAOJTA<Cours> {
         List<Cours> list = query.getResultList();
                  
         return list.isEmpty()?null : list.get(0);
-		
 	}
 	
 	
@@ -77,12 +76,11 @@ public class CoursDAO extends DAOJTA<Cours> {
 			return null;
 
 		
-		Utilisateur uDB = uDAO.findByMail(t.getInstructeurs());
+		Utilisateur uDB = uDAO.findByMail(t.getInstructeur());
 		
 		if(uDB != null)
 		{
-			t.setInstructeurs(uDB);
-			System.out.println("blibli");
+			t.setInstructeur(uDB);
 		}
 			
 		
@@ -93,17 +91,10 @@ public class CoursDAO extends DAOJTA<Cours> {
 			if(aDB == null)
 			{
 				sDAO.add(u);
-				System.out.println("bloblo");
 			}
 				
 			t.addSeance(sDAO.findByDate(u));
 		}
-//		if(list != null) {
-//			System.out.println("blabla");
-//			t.setSeances(list);
-//		}
-//	
-		
         em.persist(t);
 		return t;
 		
@@ -125,12 +116,10 @@ public class CoursDAO extends DAOJTA<Cours> {
 		aDB1.setNom(t2.getNom());
 		aDB1.setAdresse(t2.getAdresse());
 		aDB1.setDescription(t2.getDescription());
-		aDB1.setInstructeurs(t2.getInstructeurs());
+		aDB1.setInstructeur(t2.getInstructeur());
 		aDB1.setTarif(t2.getTarif());
 		aDB1.setSeances(t2.getSeances());
 
-
-		   
         em.merge(aDB1);
 
 		return aDB1;

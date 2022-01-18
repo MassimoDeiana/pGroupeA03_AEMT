@@ -49,7 +49,7 @@ public class Adresse implements Serializable
         return ville;
     }
 
-    public int getCp() {
+    public int getCodePostal() {
         return codePostal;
     }
 
@@ -69,7 +69,7 @@ public class Adresse implements Serializable
         this.ville = ville;
     }
 
-    public void setCp(int codePostal) {
+    public void setCodePostal(int codePostal) {
         this.codePostal = codePostal;
     }
 

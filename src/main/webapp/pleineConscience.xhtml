@@ -8,50 +8,69 @@
 <h:body>
   <h2>Liste des Cycles</h2>
   <nav>
-  <ul>
-	  <li><a href="">Pleine conscience</a></li>
-	  <li><a href="">Ateliers</a></li>
-	  <li><a href="">Agenda</a></li>
-	  <li><a href="">Qui sommes nous</a></li>
-	  
-  </ul>
+	  <ul>
+		  <li><h:link outcome="pleineConscience" value="PleineConscience"/></li>
+		  <li><h:link outcome="ateliers" value="Ateliers"/></li>
+		  <li><a href="">Agenda</a></li>
+		  <li><h:link outcome="quiSommesNous" value="Qui sommes nous ?"/></li>
+		  <li><h:link outcome="login" value="Me connecter"/></li>
+		  <li><h:link outcome="register" value="Me créer un profil"/></li>
+	  </ul>
   </nav>
   
-  <h:dataTable value="#{activiteControl.findAll()}" var="activite">
+  <h3>1. Événements</h3>
+  <h:dataTable value="#{activiteControl.doFindAllEvenement()}" var="evenement">
         <h:column>
-            <f:facet name="header">Titre</f:facet>
-            <h:form>
-            	<h:commandLink value="#{activite.nom}" action="#{activiteControl.doGetDetails(activite)}"></h:commandLink>
+            <f:facet name="header">Description</f:facet>
+            <h:outputText value="#{evenement.description}" />
+        </h:column>
+   </h:dataTable>
+   
+   <h3>2. Cours</h3>
+   <h:dataTable value="#{activiteControl.doFindAllCours()}" var="cours">
+   	<h:column>
+   		<h:form>
+			<h:commandLink value="#{cours.nom}" action="#{activiteControl.doGetDetails(cours)}" />
+    	<h:outputText value=" à #{cours.adresse.ville} par #{cours.instructeur} " />
+    	<h:outputText value="#{cours.seances.get(0).dateDebut}" >
+    		<f:convertDateTime pattern=" 'du' dd MMMM"/>
+    	</h:outputText>
+    	<h:outputText value="#{cours.seances.get(cours.seances.size() -1).dateFin}">
+    		<f:convertDateTime pattern=" 'au' dd MMMM"/>
+    	</h:outputText>
+    	<h:outputText value="#{cours.seances.get(0).dateDebut}">
+    		<f:convertDateTime pattern=" 'de' HH'h'mm"/>
+    	</h:outputText>
+    	<h:outputText value="#{cours.seances.get(0).dateFin}">
+    		<f:convertDateTime pattern=" 'à' HH'h'mm'. Infos et inscription' "/>
+    	</h:outputText>
+			<h:commandLink value="ici" action="#{activiteControl.doGetDetails(cours)}" />
+		</h:form>
+	</h:column>
+   </h:dataTable>
+   
+   <h3>3. Ateliers</h3>
+   <h:dataTable value="#{activiteControl.doFindAllAtelier()}" var="atelier">
+        <h:column>
+        	<h:form>
+	            <f:facet name="header">Description</f:facet>
+	            <h:commandLink value="#{atelier.description}" action="#{activiteControl.doGetDetails(atelier)}" />
             </h:form>
         </h:column>
-
         <h:column>
-            <f:facet name="header">Nom</f:facet>
-            #{activite.nom}
-        </h:column>
-
-		<h:column>
             <f:facet name="header">Tarif</f:facet>
-            #{activite.tarif}
+            <h:outputText value="#{atelier.tarif}" />
         </h:column>
-        
         <h:column>
-            <f:facet name="header">Type</f:facet>
-            #{activite.type}
+            <f:facet name="header">Séance</f:facet>
+            <h:outputText value="#{atelier.seance.dateDebut}">
+            	<f:convertDateTime pattern="'le' dd MMMM 'de' HH'h'mm "/>
+            </h:outputText>
+           <h:outputText value="#{atelier.seance.dateFin}">
+            	<f:convertDateTime pattern="'à' HH'h'mm"/>
+            </h:outputText>
         </h:column>
-        
-        <h:column>
-            <f:facet name="header">ville</f:facet>
-            #{activite.adresse.ville}
-        </h:column>
-        
-  		<h:column>
-            <f:facet name="header">numero</f:facet>
-            #{activite.adresse.numero}
-        </h:column>
-        
-        
-    </h:dataTable>
+   </h:dataTable>
   
 </h:body>
 </html>
