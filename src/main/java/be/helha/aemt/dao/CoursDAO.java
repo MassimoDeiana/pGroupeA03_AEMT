@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import be.helha.aemt.entities.Adresse;
 import be.helha.aemt.entities.Atelier;
 import be.helha.aemt.entities.Cours;
 import be.helha.aemt.entities.Evenement;
@@ -26,6 +27,8 @@ public class CoursDAO extends DAOJTA<Cours> {
 	
 	@EJB
 	private SeanceDAO sDAO;
+	@EJB
+	private AdresseDAO aDAO;
 	
 	@Override
 	public Cours find(Integer id) {
@@ -76,6 +79,10 @@ public class CoursDAO extends DAOJTA<Cours> {
 		if(eBD!=null)
 			return null;
 
+		
+		Adresse adrDB = aDAO.findByAdresse(t.getAdresse());
+		if(adrDB != null)
+			t.setAdresse(adrDB);
 		
 		Utilisateur uDB = uDAO.findByMail(t.getInstructeurs());
 		

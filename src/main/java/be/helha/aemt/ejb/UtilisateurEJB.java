@@ -3,6 +3,7 @@ package be.helha.aemt.ejb;
 import java.util.List;
 
 import javax.ejb.EJB;
+import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.transaction.Transactional;
 
@@ -10,6 +11,7 @@ import be.helha.aemt.dao.UtilisateurDAO;
 import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
+@LocalBean
 public class UtilisateurEJB implements IUtilisateurRemoteEJB {
 
 	@EJB

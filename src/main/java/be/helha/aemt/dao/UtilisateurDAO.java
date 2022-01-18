@@ -29,6 +29,14 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
 
         return find;
     }
+    
+    public Utilisateur find(Long u) {
+    	if(u==null)
+    		return null;
+    	Utilisateur find = em.find(Utilisateur.class, u);
+    	
+    	return find;
+    }
 
     public Utilisateur findByMail(Utilisateur u) {
         if(u == null) {
