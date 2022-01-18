@@ -49,10 +49,6 @@ public class Adresse implements Serializable
         return ville;
     }
 
-    public int getCodePostal() {
-        return codePostal;
-    }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -69,11 +65,15 @@ public class Adresse implements Serializable
         this.ville = ville;
     }
 
-    public void setCodePostal(int codePostal) {
-        this.codePostal = codePostal;
-    }
+    public int getCodePostal() {
+		return codePostal;
+	}
 
-    @Override
+	public void setCodePostal(int codePostal) {
+		this.codePostal = codePostal;
+	}
+
+	@Override
     public String toString() {
         return  id + " adresse : " + rue + " : " + numero + " : " + ville + " : " + codePostal ;
     }

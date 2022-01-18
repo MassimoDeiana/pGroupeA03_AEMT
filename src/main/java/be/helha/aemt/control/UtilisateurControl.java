@@ -4,6 +4,10 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 
 import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
 import be.helha.aemt.entities.Utilisateur;
@@ -22,13 +26,37 @@ public class UtilisateurControl {
 		utilisateur = new Utilisateur();
 	}
 	
-	public Utilisateur getUtilisateur() {
-		return utilisateur;
-	}
-	
 	public String doAdd() {
 		utilisateur.setRole("utilisateur");
 		ejb.add(utilisateur);
-		return "index";
+		return "listUtilisateur";
 	}
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur Utilisateur) {
+		this.utilisateur = Utilisateur;
+	}
+    
+	public List<Utilisateur> findAll() {
+        return ejb.findAll();
+    }
+	
+	public String doGetDetails(Utilisateur pub) {
+		utilisateur = pub;
+        return "detail";
+    }
+	
+	public void remove(Utilisateur Utilisateur) {
+       ejb.delete(Utilisateur);
+    }
+	
+	public String updateDirection(Utilisateur pub) {
+		utilisateur=pub;
+		return "updateUtilisateur";
+	}
+	
+	
 }
