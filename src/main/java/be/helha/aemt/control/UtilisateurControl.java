@@ -4,10 +4,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
 
 import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
 import be.helha.aemt.entities.Utilisateur;
 
+@Named
+@RequestScoped
 public class UtilisateurControl {
 
 	@EJB
@@ -18,6 +22,7 @@ public class UtilisateurControl {
 	@PostConstruct
 	public void init() {
 		utilisateur = new Utilisateur();
+		t=utilisateur;
 	}
 	
 	public String add() {
@@ -39,12 +44,14 @@ public class UtilisateurControl {
 	
 	public String doGetDetails(Utilisateur pub) {
 		utilisateur = pub;
-        return "detail";
+        return "detailUtilisateur";
     }
 	
 	public void remove(Utilisateur Utilisateur) {
        ejb.delete(Utilisateur);
     }
+	
+	
 	
 	public String updateDirection(Utilisateur pub) {
 		utilisateur=pub;
