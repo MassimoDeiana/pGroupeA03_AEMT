@@ -10,12 +10,13 @@
   <h2>Liste des Cycles</h2>
   <nav>
 	  <ul>
-		  <li><h:link outcome="pleineConscience" value="PleineConscience"/></li>
-		  <li><h:link outcome="ateliers" value="Ateliers"/></li>
+		  <li><h:link outcome="#{navigationControl.doPleineConscience()}" value="PleineConscience"/></li>
+		  <li><h:link outcome="#{navigationControl.doAteliers()}" value="Ateliers"/></li>
 		  <li><a href="">Agenda</a></li>
-		  <li><h:link outcome="quiSommesNous" value="Qui sommes nous ?"/></li>
-		  <li><h:link outcome="login" value="Me connecter"/></li>
-		  <li><h:link outcome="register" value="Me créer un profil"/></li>
+		  <li><h:link outcome="#{navigationControl.doQuiSommesNous()}" value="Qui sommes nous ?"/></li>
+		  <li><h:link outcome="#{navigationControl.doLogin()}" value="Me connecter"/></li>
+		  <li><h:link outcome="#{navigationControl.doProfil()}" value="Profil"/></li>
+		  <li><h:link outcome="#{navigationControl.doRegister()}" value="Me créer un profil"/></li>
 	  </ul>
   </nav>
   
@@ -24,6 +25,15 @@
         <h:column>
             <f:facet name="header">Description</f:facet>
             <h:outputText value="#{evenement.description}" />
+        </h:column>
+        <h:column>
+            <f:facet name="header">Séance</f:facet>
+            <h:outputText value="#{evenement.seance.dateDebut}">
+            	<f:convertDateTime pattern="'le' dd MMMM 'de' HH'h'mm "/>
+            </h:outputText>
+           <h:outputText value="#{evenement.seance.dateFin}">
+            	<f:convertDateTime pattern="'à' HH'h'mm"/>
+            </h:outputText>
         </h:column>
    </h:dataTable>
    
@@ -48,13 +58,18 @@
 			<h:commandLink value="ici" action="#{activiteControl.doGetDetails(cours)}" />
 		</h:form>
 	</h:column>
+	<h:column rendered="#{utilisateurControl.getRole() != 0}">
+		<h:form>
+			<h:commandButton value="Participer" action="#{activiteControl.doParticiper(cours)}" />
+		</h:form>
+	</h:column>
    </h:dataTable>
    
    <h3>3. Ateliers</h3>
    <h:dataTable value="#{activiteControl.doFindAllAtelier()}" var="atelier">
         <h:column>
+        	<f:facet name="header">Description</f:facet>
         	<h:form>
-	            <f:facet name="header">Description</f:facet>
 	            <h:commandLink value="#{atelier.description}" action="#{activiteControl.doGetDetails(atelier)}" />
             </h:form>
         </h:column>
@@ -71,6 +86,11 @@
             	<f:convertDateTime pattern="'à' HH'h'mm"/>
             </h:outputText>
         </h:column>
+        <h:column rendered="#{utilisateurControl.getRole() != 0}">
+			<h:form>
+				<h:commandButton value="Participer" action="#{activiteControl.doParticiper(atelier)}" />
+			</h:form>
+		</h:column>
    </h:dataTable>
   
 </h:body>

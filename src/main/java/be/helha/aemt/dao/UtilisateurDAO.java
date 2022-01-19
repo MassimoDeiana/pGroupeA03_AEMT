@@ -62,7 +62,7 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
         String qUtilisateur = "Select u from Utilisateur u where u.activites=:activites";
         Query queryUtilisateur = em.createQuery(qUtilisateur);
 
-        queryUtilisateur.setParameter("activites", u.getActivites().get(0));
+        queryUtilisateur.setParameter("activites", u.getActivites());
 
         List<Utilisateur> utilisateurList = queryUtilisateur.getResultList();
 
@@ -128,20 +128,19 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
 	
 	@Transactional
 	public Utilisateur updateActivites(Utilisateur t1, Utilisateur t2) {
-		
+		System.out.println("mdrrrr");
 		Utilisateur uDB1 = findByMail(t1);
-		Utilisateur uDB2 = findByActivites(t2);
-		System.out.println(uDB1);
-		System.out.println(uDB1.getId());
-		System.out.println("xD" + t2);
-		System.out.println("mdré" + uDB2);
+		System.out.println("test1");
+		Utilisateur uDB2 = t2;
+		System.out.println("test");
 		if(uDB2 != null && uDB1.getActivites().equals(uDB2.getActivites())) {
-			System.out.println("la");
+			System.out.println("test2");
 			return null;
 		}
-		System.out.println("ici");
-		 if(!em.contains(uDB1))
-	            return null;
+		if(!em.contains(uDB1)) {
+			System.out.println("ici");
+        	return null;
+		}
 
 		uDB1.setActivites(t2.getActivites());
         

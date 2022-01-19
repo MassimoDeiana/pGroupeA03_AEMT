@@ -7,16 +7,16 @@
 </head>
     <h:body>
    		<nav>
-		  <ul>
-			  <li><h:link outcome="pleineConscience" value="PleineConscience"/></li>
-			  <li><h:link outcome="ateliers" value="Ateliers"/></li>
+		  	<ul>
+			  <li><h:link outcome="#{navigationControl.doPleineConscience()}" value="PleineConscience"/></li>
+			  <li><h:link outcome="#{navigationControl.doAteliers()}" value="Ateliers"/></li>
 			  <li><a href="">Agenda</a></li>
-			  <li><h:link outcome="quiSommesNous" value="Qui sommes nous ?"/></li>
-			  <li><h:link outcome="login" value="Me connecter"/></li>
-			  <li><h:link outcome="profil" value="Profil"/></li>
-			  <li><h:link outcome="register" value="Me créer un profil"/></li>
-		  </ul>
-	  	</nav>
+			  <li><h:link outcome="#{navigationControl.doQuiSommesNous()}" value="Qui sommes nous ?"/></li>
+			  <li><h:link outcome="#{navigationControl.doLogin()}" value="Me connecter"/></li>
+			  <li><h:link outcome="#{navigationControl.doProfil()}" value="Profil"/></li>
+			  <li><h:link outcome="#{navigationControl.doRegister()}" value="Me créer un profil"/></li>
+		  	</ul>
+  		</nav>
         <h:form>
 			<h:outputLabel value="Prénom"/><br/>
 			<h:inputText value="#{utilisateurControl.utilisateur.prenom}" /><br/>

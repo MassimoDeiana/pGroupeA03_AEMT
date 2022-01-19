@@ -112,13 +112,21 @@ public class Utilisateur implements Serializable {
 	}
 	
 	public boolean addActivite(Activite t) {
-		if(t==null)
-			return false;
-			
-		if(activites.contains(t))
-			return false;
-		return activites.add(t);
-	}
+        if(t==null)
+            return false;
+
+        if(activites.contains(t))
+            return false;
+        return activites.add(t);
+    }
+
+    public boolean removeActivite(Activite t) {
+        if(t==null)
+            return false;
+        if(!activites.contains(t))
+            return false;
+        return activites.remove(t);
+    }
 
 	@Override
     public int hashCode() {

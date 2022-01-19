@@ -33,6 +33,29 @@ public class NavigationControl {
 
 	}
 	
+	public String doRegister() {
+		return "/register.xhtml?faces-redirect=true";
+	}
+	
+	public String doLogin() {
+		return "/login.xhtml?faces-redirect=true";
+	}
+	
+	public String doQuiSommesNous() {
+		return "/quiSommesNous.xhtml?faces-redirect=true";
+	}
+	
+	public String doAteliers() {
+		return "/ateliers.xhtml?faces-redirect=true";
+	}
+	
+	public String doPleineConscience() {
+		return "/pleineConscience.xhtml?faces-redirect=true";
+	}
+	
+	public String doProfil() {
+		return "/utilisateur/profil.xhtml?faces-redirect=true";
+	}
 	
 
 }

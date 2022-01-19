@@ -1,42 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 <head>
-
+<link rel="stylesheet" href="./style.css"></link>
 <title>Liste</title>
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-    <h:dataTable value="#{utilisateurControl.getUtilisateur()}" var="utilisateur">
+    <h:dataTable value="#{utilisateurDetailControl.getUtilisateur()}" var="utilisateur">
         <h:column>
             <f:facet name="header">Id</f:facet>
             #{utilisateur.id}
         </h:column>
-        
+
         <h:column>
             <f:facet name="header">nom</f:facet>
             #{utilisateur.nom}
         </h:column>
-        
+
         <h:column>
             <f:facet name="header">prenom</f:facet>
             #{utilisateur.prenom}
         </h:column>
-	            
+
     </h:dataTable>
-    
-    	 <h:dataTable value="#{utilisateurControl.getUtilisateur().activites}" var="activite">	
-	        <h:column>
-	            <f:facet name="header">activite</f:facet>
-	            #{activite.nom}
-	        </h:column>
-		        
-	        <h:column>
-	            <f:facet name="header">Delete</f:facet>
-	            <h:form>
-	            	<h:commandButton value="X" action="#{utilisateurControl.remove(utilisateur)}"></h:commandButton>
-	            </h:form>
-	        </h:column>
-	    </h:dataTable>
-    
+
+         <h:dataTable value="#{utilisateurDetailControl.getUtilisateur().activites}" var="activite">
+            <h:column>
+                <f:facet name="header">activite</f:facet>
+                #{activite.nom}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Delete</f:facet>
+                <h:form>
+                    <h:commandButton value="X" action="#{utilisateurDetailControl.removeActivite(activite)}"></h:commandButton>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+
 </body>
 </html>
