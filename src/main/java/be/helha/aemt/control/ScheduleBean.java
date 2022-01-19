@@ -23,7 +23,6 @@ import be.helha.aemt.ejb.ActiviteEJB;
 import be.helha.aemt.ejb.AtelierEJB;
 import be.helha.aemt.ejb.CoursEJB;
 import be.helha.aemt.ejb.EvenementEJB;
-import be.helha.aemt.ejb.IActiviteRemoteEJB;
 import be.helha.aemt.ejb.SeanceEJB;
 import be.helha.aemt.entities.Activite;
 import be.helha.aemt.entities.Atelier;

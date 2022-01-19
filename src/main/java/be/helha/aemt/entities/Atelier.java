@@ -50,11 +50,11 @@ public class Atelier extends Activite{
 		this.seance = seance;
 	}
 
-	public Utilisateur getInstructeurs() {
+	public Utilisateur getInstructeur() {
 		return instructeur;
 	}
 
-	public void setInstructeurs(Utilisateur instructeur) {
+	public void setInstructeur(Utilisateur instructeur) {
 		this.instructeur = instructeur;
 	}
 

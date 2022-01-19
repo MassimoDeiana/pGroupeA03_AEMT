@@ -12,7 +12,6 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Evenement extends Activite{
-
 		
 	private static final long serialVersionUID = 1L;
 

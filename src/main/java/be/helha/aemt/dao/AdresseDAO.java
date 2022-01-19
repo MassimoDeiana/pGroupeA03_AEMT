@@ -20,7 +20,7 @@ public class AdresseDAO extends DAOJTA<Adresse> {
 		}
 		String qAdresse="Select a from Adresse a where a.codePostal=:codePostal and a.rue=:rue and a.numero=:numero and a.ville=:ville";
         Query queryAdresse = em.createQuery(qAdresse);
-        queryAdresse.setParameter("codePostal", a.getCp());
+        queryAdresse.setParameter("codePostal", a.getCodePostal());
         queryAdresse.setParameter("rue", a.getRue());
         queryAdresse.setParameter("numero", a.getNumero());
         queryAdresse.setParameter("ville", a.getVille());

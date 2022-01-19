@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:b="http://bootsfaces.net/ui"
+  xmlns:p="http://primefaces.org/ui">
+
+<head>
+<link rel="stylesheet" href="./style.css"></link>
+	<title>Ajout atelier</title>
+	<meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<h:body>
+  <h2>Navigation</h2>
+   <h:form>
+  <nav>
+	  <ul>
+ 		  <li><h:commandLink action="#{navigationControl.doListeActivite()}" value="Gestion des activites"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
+	  </ul>
+  </nav>
+  </h:form>
+ 
+  		<h:form>
+  			<h1>Ajout d'un atelier</h1>
+			Nom   <h:inputText value="#{atelierControl.atelier.nom}"></h:inputText>
+			<br/>
+			<br/>
+			
+			Description   <h:inputText value="#{atelierControl.atelier.description}" ></h:inputText>
+			<br/>
+			<br/>
+		
+			   
+
+<!-- 	EJB NULL DANS CONVERTER			 -->
+<!-- 			<b>Instructeurs</b> -->
+
+<!-- 				<h:selectOneListbox value="#{atelierControl.atelier.instructeur}" converterId="utilisateurConverter" > -->
+<!-- 			   		<f:selectItems value="#{atelierControl.instructeurs}" var="instructeur" itemLabel="#{instructeur.nom}" itemValue="#{instructeur}"></f:selectItems> -->
+					
+<!-- 				</h:selectOneListbox> -->
+				
+			
+			<br/>
+			<br/>
+				
+			<b>Adresse</b>	
+			<br/>
+			Rue   <h:inputText value="#{atelierControl.adresse.rue}"></h:inputText>
+			<br/>
+			<br/>
+			Numero   <h:inputText value="#{atelierControl.adresse.numero}"></h:inputText>
+			<br/>
+			<br/>
+			Ville   <h:inputText value="#{atelierControl.adresse.ville}"></h:inputText>
+			<br/>
+			<br/>
+			Code Postal   <h:inputText value="#{atelierControl.adresse.codePostal}"></h:inputText>
+			<br/>
+			<br/>
+					
+			Tarifs   <h:inputText value="#{atelierControl.atelier.tarif}"></h:inputText>
+			<br/>
+			<br/>
+
+			<h:commandButton value="Ajouter" action="#{atelierControl.addAtelier()}"></h:commandButton>
+		</h:form>
+  
+  
+</h:body>
+</html>

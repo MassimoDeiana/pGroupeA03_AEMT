@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import be.helha.aemt.entities.Adresse;
 import be.helha.aemt.entities.Atelier;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.Seance;
@@ -26,6 +27,9 @@ public class AtelierDAO extends DAOJTA<Atelier> {
 	
 	@EJB
 	private SeanceDAO sDAO;
+	
+	@EJB
+	private AdresseDAO aDAO;
 	
 	@Override
 	public Atelier find(Integer id) {
@@ -45,11 +49,10 @@ public class AtelierDAO extends DAOJTA<Atelier> {
 		String qEvenement="Select e from Atelier e where e.nom=:nom and e.seance=:seance";
         Query queryEvenement = em.createQuery(qEvenement);
         queryEvenement.setParameter("nom", e.getNom());
-        queryEvenement.setParameter("seance", e.getSeance());
+        queryEvenement.setParameter("seance", sDAO.findByDate(e.getSeance()));
         List<Atelier> EvenementList = queryEvenement.getResultList();
                  
         return EvenementList.isEmpty()?null : EvenementList.get(0);
-		
 	}
 
 	@Override
@@ -75,22 +78,21 @@ public class AtelierDAO extends DAOJTA<Atelier> {
 		if(eBD!=null)
 			return null;
 		
-
+		Adresse aDB = aDAO.findByAdresse(t.getAdresse());
+			if(aDB != null)
+				t.setAdresse(aDB);
 		
-		Utilisateur uDB = uDAO.findByMail(t.getInstructeurs());
+		Utilisateur uDB = uDAO.findByMail(t.getInstructeur());
 		
 		if(uDB != null)
-			t.setInstructeurs(uDB);
+			t.setInstructeur(uDB);
 		
 		Seance sDB = sDAO.findByDate(t.getSeance());
 		
 		if(sDB != null)
 			t.setSeance(sDB);
-		
-				
         em.persist(t);
 		return t;
-		
 	}
 
 	@Override
@@ -109,7 +111,7 @@ public class AtelierDAO extends DAOJTA<Atelier> {
 		aDB1.setNom(t2.getNom());
 		aDB1.setAdresse(t2.getAdresse());
 		aDB1.setDescription(t2.getDescription());
-		aDB1.setInstructeurs(t2.getInstructeurs());
+		aDB1.setInstructeur(t2.getInstructeur());
 		aDB1.setTarif(t2.getTarif());
 		aDB1.setSeance(t2.getSeance());
 		   

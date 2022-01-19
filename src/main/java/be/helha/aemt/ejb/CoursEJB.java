@@ -12,28 +12,24 @@ import be.helha.aemt.entities.Cours;
 
 @Stateless
 @LocalBean
-public class CoursEJB implements ICoursRemoteEJB {
+public class CoursEJB {
 
 	@EJB
 	private CoursDAO dao;
 
-	@Override
 	public Cours find(Integer id) {
 		return dao.find(id);
 	}
 
-	@Override
 	public List<Cours> findAll() {
 		return dao.findAll();
 	}
 
-	@Override
 	@Transactional
 	public Cours add(Cours u) {
 		return dao.add(u);
 	}
 
-	@Override
 	@Transactional
 	public Cours delete(Cours u) {
 		return dao.delete(u);

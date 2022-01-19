@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:b="http://bootsfaces.net/ui"
+  xmlns:p="http://primefaces.org/ui">
+  
+  
+<head>
+	<title>Ajout utilisateur</title>
+	<meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<h:body>
+  <h2>Navigation</h2>
+  <h:form>
+  <nav>
+	  <ul>
+ 		  <li><h:commandLink action="#{navigationControl.doListeActivite()}" value="Gestion des activites"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
+	  </ul>
+  </nav>
+  </h:form>
+  <b>Ajouter un utilisateur</b>
+        <h:form>
+			<h:outputLabel value="Prénom"/><br/>
+			<h:inputText value="#{utilisateurControl.utilisateur.prenom}" /><br/>
+			<h:outputLabel value="Nom"/><br/>
+			<h:inputText value="#{utilisateurControl.utilisateur.nom}" /><br/>
+			<h:outputLabel value="E-mail"/><br/>
+			<h:inputText value="#{utilisateurControl.utilisateur.mail}" /><br/><br/>
+			<h:outputLabel value="Mot de passe"/><br/>
+			<h:inputText value="#{utilisateurControl.utilisateur.mdp}" /><br/><br/>
+			<h:selectOneListbox value="#{utilisateurControl.utilisateur.role}">
+				<f:selectItem itemValue = "utilisateur" itemLabel = "Utilisateur"></f:selectItem>
+				<f:selectItem itemValue = "instructeur" itemLabel = "Instructeur"></f:selectItem>
+				<f:selectItem itemValue = "admin" itemLabel = "Admin"></f:selectItem>
+			</h:selectOneListbox>
+			<br/>
+			<br/>
+			<h:commandButton value="Ajouter" 
+				action="#{utilisateurControl.doAddWithAdmin()}" />
+		</h:form> 
+  
+  
+</h:body>
+</html>

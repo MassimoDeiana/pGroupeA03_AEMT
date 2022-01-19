@@ -12,28 +12,24 @@ import be.helha.aemt.entities.Evenement;
 
 @Stateless
 @LocalBean
-public class EvenementEJB implements IEvenementRemoteEJB {
+public class EvenementEJB  {
 
 	@EJB
 	private EvenementDAO dao;
 
-	@Override
 	public Evenement find(Integer id) {
 		return dao.find(id);
 	}
 
-	@Override
 	public List<Evenement> findAll() {
 		return dao.findAll();
 	}
 
-	@Override
 	@Transactional
 	public Evenement add(Evenement u) {
 		return dao.add(u);
 	}
 
-	@Override
 	@Transactional
 	public Evenement delete(Evenement u) {
 		return dao.delete(u);

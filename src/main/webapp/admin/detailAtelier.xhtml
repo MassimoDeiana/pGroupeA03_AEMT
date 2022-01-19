@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<head>
+
+<title>Liste</title>
+<meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+
+  <h:form>
+  <nav>
+	  <ul>
+ 		  <li><h:commandLink action="#{navigationControl.doListeActivite()}" value="Gestion des activites"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
+	  </ul>
+  </nav>
+  </h:form>
+
+    <h:dataTable value="#{atelierDetailControl.getAtelier()}" var="atelier">        
+        <h:column>
+            <f:facet name="header">nom</f:facet>
+            #{atelier.nom}
+        </h:column>
+        
+        <h:column>
+            <f:facet name="header">prenom</f:facet>
+            #{atelier.description}
+        </h:column>
+	            
+    </h:dataTable>
+    
+    	 <h:dataTable value="#{atelierDetailControl.getAtelier().seance}" var="seance">	
+            <h:column>
+                <h:outputText value="#{seance.dateDebut}">
+                    <f:convertDateTime pattern="'Le' dd MMMM 'de' HH:mm 'à' "/>
+                </h:outputText>
+                <h:outputText value="#{seance.dateFin}">
+                    <f:convertDateTime pattern="HH:mm"/>
+                </h:outputText>
+            </h:column>
+	        
+	        <h:column rendered="#{atelierDetailControl.getSizeofSeances() == 0}">
+        		<h:outputText value="vous n'avez pas d'activités pour l'instant !" />
+    		</h:column>
+		        
+	        <h:column>
+	            <f:facet name="header">Delete</f:facet>
+	            <h:form>
+	            	<h:commandButton value="X" action="#{atelierDetailControl.removeActivite(activite)}"></h:commandButton>
+	            </h:form>
+	        </h:column>
+	    </h:dataTable>
+    
+</body>
+</html>

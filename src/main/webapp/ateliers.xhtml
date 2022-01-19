@@ -9,31 +9,37 @@
 <h:body>
   <h2>Liste des ateliers</h2>
   <nav>
-  <ul>
-	  <li><h:link outcome="pleineConscience" value="PleineConscience"/></li>
-	  <li><h:link outcome="ateliers" value="Ateliers"/></li>
-	  <li><h:link outcome="agenda" value="Agenda"/></li>
-	  <li><h:link outcome="quiSommesNous" value="Qui sommes nous ?"/></li>
-  </ul>
+	  <ul>
+		  <li><h:link outcome="pleineConscience" value="PleineConscience"/></li>
+		  <li><h:link outcome="ateliers" value="Ateliers"/></li>
+		  <li><h:link outcome="agenda" value="Agenda"/></li>
+		  <li><h:link outcome="quiSommesNous" value="Qui sommes nous ?"/></li>
+		  <li><h:link rendered="#{utilisateurControl.getRole() == 2}" outcome="profil" value="Profil"/></li>
+		  <li><h:link rendered="#{utilisateurControl.getRole() == 0}" outcome="login" value="Me connecter"/></li>
+		  <li><h:link rendered="#{utilisateurControl.getRole() == 0}" outcome="register" value="Me créer un profil"/></li>
+		  <li><h:link rendered="#{utilisateurControl.getRole() == 1}" outcome="#{navigationControl.doIndexAdmin()}" value="Admin"/></li>
+		  <li><h:link rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
+	  </ul>
   </nav>
   
-  <h:dataTable value="#{activiteControl.findAll()}" var="activite">
-  	
-  		<h:column>
-  		    <f:facet name="header">Nom</f:facet>
-  			#{activite.nom}
-  		</h:column>
-  		<h:column>
-  		    <f:facet name="header">Nom</f:facet>
-  		    	#{activite.image}
-  		</h:column>
-	  	<h:column>
-	  		<h:graphicImage value="#{activite.image}" converterId="imageConverter">
-	  			<f:param name="id" value="#{activite.image}"/>
-	  		</h:graphicImage>
-	  	</h:column>
-  	
-  </h:dataTable>
+  <h:dataTable value="#{atelierControl.doFindAll()}" var="atelier">
+		<h:column>
+			<f:facet name="header">Description</f:facet>
+			<h:form>
+				<h:commandLink value="#{atelier.description}" />
+			</h:form>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Tarif</f:facet>
+			<h:outputText value="#{atelier.tarif}" />
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Instructeur</f:facet>
+			<h:outputText value="#{atelier.instructeur}" />
+		</h:column>
+	</h:dataTable>
+  
   
 </h:body>
 </html>

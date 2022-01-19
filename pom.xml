@@ -15,8 +15,12 @@
 	  		<groupId>org.apache.maven.plugins</groupId>
 	  		<artifactId>maven-war-plugin</artifactId>
 	  		<version>3.3.1</version>
+	  		
+	  		
+	  		
 	  	</plugin>
   	</plugins>
+  	
   </build>
   
   
@@ -50,6 +54,14 @@
 			<version>11.0.0</version>
 		</dependency>
 		
+	<dependency>
+	    <groupId>net.bootsfaces</groupId>
+	    <artifactId>bootsfaces</artifactId>
+	    <version>1.5.0</version>
+	    <scope>compile</scope>
+	</dependency>
+                         
+		
 	</dependencies>
 	
 	<repositories>
@@ -60,5 +72,7 @@
 			<name>Repository for library PrimeFaces-maven-lib</name>
 		</repository>
 	</repositories>
+  
+  
   
 </project>

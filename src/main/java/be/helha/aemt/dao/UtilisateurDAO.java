@@ -1,6 +1,7 @@
 package be.helha.aemt.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -11,8 +12,10 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import be.helha.aemt.entities.Activite;
+import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.Seance;
 import be.helha.aemt.entities.Utilisateur;
+import be.helha.aemt.entities.Adresse;
 
 @Stateless
 @LocalBean
@@ -29,6 +32,25 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
 
         return find;
     }
+    
+    public Utilisateur find(Long u) {
+    	if(u==null)
+    		return null;
+    	Utilisateur find = em.find(Utilisateur.class, u);
+    	
+    	return find;
+    }
+    
+    public List<Utilisateur> findInstructeur() {
+        String qUtilisateur = "Select u from Utilisateur u where u.role=:role";
+        Query queryUtilisateur = em.createQuery(qUtilisateur);
+
+        queryUtilisateur.setParameter("role", "instructeur");
+
+        List<Utilisateur> utilisateurList = queryUtilisateur.getResultList();
+
+        return utilisateurList.isEmpty()?null : utilisateurList;
+    }
 
     public Utilisateur findByMail(Utilisateur u) {
         if(u == null) {
@@ -38,6 +60,20 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
         Query queryUtilisateur = em.createQuery(qUtilisateur);
 
         queryUtilisateur.setParameter("mail", u.getMail());
+
+        List<Utilisateur> utilisateurList = queryUtilisateur.getResultList();
+
+        return utilisateurList.isEmpty()?null : utilisateurList.get(0);
+    }
+    
+    public Utilisateur findByActivites(Utilisateur u) {
+        if(u == null || u.getActivites().isEmpty()) {
+            return null;
+        }
+        String qUtilisateur = "Select u from Utilisateur u where u.activites=:activites";
+        Query queryUtilisateur = em.createQuery(qUtilisateur);
+
+        queryUtilisateur.setParameter("activites", u.getActivites());
 
         List<Utilisateur> utilisateurList = queryUtilisateur.getResultList();
 
@@ -63,26 +99,6 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
         if(uBD != null) {
             return null;
         }
-        
-
-		List<Activite> list = new ArrayList<Activite>();
-		
-		for (Activite u : t.getActivites()) {
-			
-			Activite uDB = aDao.findByActivite(u);
-		
-			if(uDB == null)
-			{
-				aDao.add(u);
-			}
-			
-			list.add(aDao.findByActivite(u));
-			
-		}
-		
-		if(list != null) {
-			t.setActivites(list);
-		}
 
         em.persist(t);
 
@@ -105,8 +121,44 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
 	@Override
 	@Transactional
 	public Utilisateur update(Utilisateur t1, Utilisateur t2) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Utilisateur uDB1 = findByMail(t1);
+		Utilisateur uDB2 = findByMail(t2);
+		if(uDB1==null || uDB1.getId()==null || t2==null || uDB2!=null) {
+			return null;
+		}
+		 if(!em.contains(uDB1))
+	            return null;
+
+		uDB1.setActivites(t2.getActivites());
+        
+        em.merge(uDB1);
+
+		return uDB1;
 	}
+	
+	@Transactional
+    public Utilisateur updateActivites(Utilisateur t1, Utilisateur t2) {
+        System.out.println("mdrrrr");
+        Utilisateur uDB1 = findByMail(t1);
+        System.out.println("test1");
+        Utilisateur uDB2 = t2;
+        System.out.println("test");
+        if(uDB2 != null && uDB1.getActivites().equals(uDB2.getActivites())) {
+            System.out.println("test2");
+            return null;
+        }
+        if(!em.contains(uDB1)) {
+            System.out.println("ici");
+            return null;
+        }
+
+        uDB1.setActivites(t2.getActivites());
+
+
+        em.merge(uDB1);
+
+        return uDB1;
+    }
 
 }

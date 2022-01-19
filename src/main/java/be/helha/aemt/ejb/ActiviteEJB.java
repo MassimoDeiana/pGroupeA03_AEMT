@@ -13,28 +13,25 @@ import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
 @LocalBean
-public class ActiviteEJB implements IActiviteRemoteEJB {
+
+public class ActiviteEJB {
 
 	@EJB
 	private ActiviteDAO dao;
 
-	@Override
 	public Activite find(Integer id) {
 		return dao.find(id);
 	}
 
-	@Override
 	public List<Activite> findAll() {
 		return dao.findAll();
 	}
 
-	@Override
 	@Transactional
 	public Activite add(Activite u) {
 		return dao.add(u);
 	}
 
-	@Override
 	@Transactional
 	public Activite delete(Activite u) {
 		return dao.delete(u);

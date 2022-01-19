@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import be.helha.aemt.entities.Activite;
+import be.helha.aemt.entities.Adresse;
 import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.Seance;
 
@@ -23,6 +24,9 @@ public class EvenementDAO extends DAOJTA<Evenement>{
 	@EJB
 	private SeanceDAO sDAO;
 	
+	@EJB
+	private AdresseDAO aDAO;
+	
 	@Override
 	public Evenement find(Integer id) {
 		if(id==null)
@@ -32,7 +36,6 @@ public class EvenementDAO extends DAOJTA<Evenement>{
 		
 		return find;
 	}
-
 	
 	public Evenement findEvenement(Evenement e) {
 		if(e == null)
@@ -44,7 +47,6 @@ public class EvenementDAO extends DAOJTA<Evenement>{
         List<Evenement> EvenementList = queryEvenement.getResultList();
                  
         return EvenementList.isEmpty()?null : EvenementList.get(0);
-		
 	}
 	
 	@Override
@@ -67,12 +69,14 @@ public class EvenementDAO extends DAOJTA<Evenement>{
 		if(eBD!=null)
 			return null;
 		
+		Adresse aDB = aDAO.findByAdresse(t.getAdresse());
+		if(aDB != null)
+			t.setAdresse(aDB);
+		
 		Seance sDB = sDAO.findByDate(t.getSeance());
 		
 		if(sDB != null)
 			t.setSeance(sDB);
-		
-		
 		
 		em.persist(t);
 		return t;
@@ -118,8 +122,6 @@ public class EvenementDAO extends DAOJTA<Evenement>{
 	}
 
 
-	
-	
 }
 
 	
