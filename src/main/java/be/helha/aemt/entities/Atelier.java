@@ -32,9 +32,9 @@ public class Atelier extends Activite{
 
 
 	
-	public Atelier(String nom, String description, Adresse adresse, Seance seance, Utilisateur instructeur,
+	public Atelier(String nom, String description, Adresse adresse, Seance seance,Images image, Utilisateur instructeur,
 			double tarif) {
-		super(nom, description, adresse);
+		super(nom, description, adresse,image);
 		this.seance = seance;
 		this.instructeur = instructeur;
 		this.tarif = tarif;

@@ -1,6 +1,6 @@
 package be.helha.aemt.entities;
 
-import java.io.Serializable;
+import java.io.Serializable;  
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -32,13 +32,16 @@ public class Activite implements Serializable{
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Adresse adresse;
 
+	@ManyToOne(cascade=CascadeType.PERSIST)
+	private Images image;
 	
 	
-	public Activite(String nom, String description, Adresse adresse) {
+	public Activite(String nom, String description, Adresse adresse,Images image) {
 		super();
 		this.nom = nom;
 		this.description = description;
 		this.adresse = adresse;
+		this.image=image;
 	}
 
 	public Activite() {}
@@ -73,6 +76,14 @@ public class Activite implements Serializable{
 
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
+	}
+	
+	public Images getImage() {
+		return image;
+	}
+
+	public void setImage(Images image) {
+		this.image = image;
 	}
 
 	@Override

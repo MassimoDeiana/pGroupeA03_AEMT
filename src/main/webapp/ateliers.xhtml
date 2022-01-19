@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <link rel="stylesheet" href="./style.css"></link>
 
@@ -17,6 +17,23 @@
   </ul>
   </nav>
   
+  <h:dataTable value="#{activiteControl.findAll()}" var="activite">
+  	
+  		<h:column>
+  		    <f:facet name="header">Nom</f:facet>
+  			#{activite.nom}
+  		</h:column>
+  		<h:column>
+  		    <f:facet name="header">Nom</f:facet>
+  		    	#{activite.image}
+  		</h:column>
+	  	<h:column>
+	  		<h:graphicImage value="#{activite.image}" converterId="imageConverter">
+	  			<f:param name="id" value="#{activite.image}"/>
+	  		</h:graphicImage>
+	  	</h:column>
+  	
+  </h:dataTable>
   
 </h:body>
 </html>

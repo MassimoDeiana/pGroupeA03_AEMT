@@ -13,6 +13,8 @@
 		<class>be.helha.aemt.entities.Evenement</class>
 		<class>be.helha.aemt.entities.Seance</class>
 		<class>be.helha.aemt.entities.Utilisateur</class>
+		<class>be.helha.aemt.entities.Images</class>
+		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 	
 		<properties>

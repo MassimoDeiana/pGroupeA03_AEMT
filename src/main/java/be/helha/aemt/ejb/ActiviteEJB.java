@@ -12,6 +12,7 @@ import be.helha.aemt.entities.Activite;
 import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
+@LocalBean
 public class ActiviteEJB implements IActiviteRemoteEJB {
 
 	@EJB
