@@ -13,10 +13,10 @@
 </head>
 <h:body>
   <h2>Navigation</h2>
-  <h:form>
+   <h:form>
   <nav>
 	  <ul>
- 		  <li><h:commandLink action="#{navigationControl.doListeAtelier()}" value="Gestion des activites"/></li>
+ 		  <li><h:commandLink action="#{navigationControl.doListeActivite()}" value="Gestion des activites"/></li>
 		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
 		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
 		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
@@ -35,17 +35,11 @@
 			<br/>
 			<br/>
 		
-			Date de début   <b:dateTimePicker value="#{atelierControl.seance.dateDebut}" ></b:dateTimePicker>
-			<br/>
-			<br/>
-			Date de fin   <b:dateTimePicker value="#{atelierControl.seance.dateFin}"></b:dateTimePicker>
-			<br/>
-			<br/>
-			  
 			   
+
+<!-- 	EJB NULL DANS CONVERTER			 -->
 <!-- 			<b>Instructeurs</b> -->
-			
-<!-- 			EJB NULL DANS LE CONVERTER -->
+
 <!-- 				<h:selectOneListbox value="#{atelierControl.atelier.instructeur}" converterId="utilisateurConverter" > -->
 <!-- 			   		<f:selectItems value="#{atelierControl.instructeurs}" var="instructeur" itemLabel="#{instructeur.nom}" itemValue="#{instructeur}"></f:selectItems> -->
 					

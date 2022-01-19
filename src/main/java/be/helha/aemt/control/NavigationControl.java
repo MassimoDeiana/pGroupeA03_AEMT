@@ -75,8 +75,8 @@ public class NavigationControl {
 		return "/admin/listeUtilisateur.xhtml?face-redirect=true";
 	}
 	
-	public String doListeAtelier() {
-		return "/admin/listeAtelier.xhtml?face-redirect=true";
+	public String doListeActivite() {
+		return "/admin/listeActivite.xhtml?face-redirect=true";
 	}
 	
 	

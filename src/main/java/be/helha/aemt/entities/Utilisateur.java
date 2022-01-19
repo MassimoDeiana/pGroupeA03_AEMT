@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -28,7 +29,7 @@ public class Utilisateur implements Serializable {
     private String prenom;
     private String role;
     
-    @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE}, fetch = FetchType.EAGER)
     private List<Activite> activites;
     
     public Utilisateur(String mail, String mdp, String nom, String prenom, String role) {

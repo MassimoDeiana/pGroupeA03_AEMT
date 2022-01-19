@@ -16,7 +16,6 @@ import be.helha.aemt.dao.UtilisateurDAO;
 import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Utilisateur;
 
-@ManagedBean
 @FacesConverter(forClass = Utilisateur.class)
 public class UtilisateurConverter implements Converter<Utilisateur>{
 

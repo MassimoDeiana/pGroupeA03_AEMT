@@ -19,38 +19,37 @@
   </nav>
   </h:form>
 
-    <h:dataTable value="#{utilisateurDetailControl.getUtilisateur()}" var="utilisateur">
-        <h:column>
-            <f:facet name="header">Id</f:facet>
-            #{utilisateur.id}
-        </h:column>
-        
+    <h:dataTable value="#{atelierDetailControl.getAtelier()}" var="atelier">        
         <h:column>
             <f:facet name="header">nom</f:facet>
-            #{utilisateur.nom}
+            #{atelier.nom}
         </h:column>
         
         <h:column>
             <f:facet name="header">prenom</f:facet>
-            #{utilisateur.prenom}
+            #{atelier.description}
         </h:column>
 	            
     </h:dataTable>
     
-    	 <h:dataTable value="#{utilisateurDetailControl.getUtilisateur().activites}" var="activite">	
-	        <h:column>
-	            <f:facet name="header">activite</f:facet>
-	            #{activite.nom}
-	        </h:column>
+    	 <h:dataTable value="#{atelierDetailControl.getAtelier().seance}" var="seance">	
+            <h:column>
+                <h:outputText value="#{seance.dateDebut}">
+                    <f:convertDateTime pattern="'Le' dd MMMM 'de' HH:mm 'à' "/>
+                </h:outputText>
+                <h:outputText value="#{seance.dateFin}">
+                    <f:convertDateTime pattern="HH:mm"/>
+                </h:outputText>
+            </h:column>
 	        
-	        <h:column rendered="#{utilisateurDetailControl.getSizeofActivities() == 0}">
+	        <h:column rendered="#{atelierDetailControl.getSizeofSeances() == 0}">
         		<h:outputText value="vous n'avez pas d'activités pour l'instant !" />
     		</h:column>
 		        
 	        <h:column>
 	            <f:facet name="header">Delete</f:facet>
 	            <h:form>
-	            	<h:commandButton value="X" action="#{utilisateurDetailControl.removeActivite(activite)}"></h:commandButton>
+	            	<h:commandButton value="X" action="#{atelierDetailControl.removeActivite(activite)}"></h:commandButton>
 	            </h:form>
 	        </h:column>
 	    </h:dataTable>

@@ -32,17 +32,11 @@ public class UtilisateurDetailControl {
 		this.utilisateur = Utilisateur;
 	}
     
-	public void removeActivite(Activite activite) {
-		System.out.println("coucou");		
-		Utilisateur tmp = utilisateur;
-		tmp.removeActivite(activite);
-		ejb.update(utilisateur, tmp);
-		
-	}
-	
+
 	public int getSizeofActivities() {
-		System.out.println(utilisateur.getActivites().size());
-        return utilisateur.getActivites().size();
+		if(utilisateur!=null)
+			return utilisateur.getActivites().size();
+		return 0;
     }
 	
 	public Utilisateur getLogged() {

@@ -18,6 +18,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import be.helha.aemt.ejb.UtilisateurEJB;
+import be.helha.aemt.entities.Activite;
 import be.helha.aemt.entities.Utilisateur;
 
 @Named
@@ -111,6 +112,15 @@ public class UtilisateurControl {
 	}
 	
 
+	public void removeActivite(Activite activite,Utilisateur u) {		
+		Utilisateur tmp = ejb.findByMail(u);
+        utilisateur = tmp;
+        tmp.removeActivite(activite);
+        ejb.update(utilisateur, tmp);
+		
+	}
+	
+	
 	
 	public static String encode(final String clearText) throws NoSuchAlgorithmException {
         return new String(

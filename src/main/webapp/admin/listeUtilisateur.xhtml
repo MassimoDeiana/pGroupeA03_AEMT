@@ -10,7 +10,7 @@
   <h:form>
   <nav>
 	  <ul>
- 		  <li><h:commandLink action="#{navigationControl.doListeAtelier()}" value="Gestion des activites"/></li>
+ 		  <li><h:commandLink action="#{navigationControl.doListeActivite()}" value="Gestion des activites"/></li>
 		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
 		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
 		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
@@ -43,6 +43,24 @@
             #{utilisateur.role}
         </h:column>
         
+         <h:column>
+            <f:facet name="header">Activite</f:facet>
+            <h:dataTable value="#{utilisateur.activites}" var="activite">	
+	        <h:column>
+	            #{activite.nom}
+	        </h:column>
+	        
+	        	        <h:column>
+	            <h:form>
+	            	<h:commandButton value="X" action="#{utilisateurControl.removeActivite(activite,utilisateur)}"></h:commandButton>
+	            </h:form>
+	        </h:column>
+	
+	        
+	            </h:dataTable>
+        </h:column>
+        
+        
         <h:column>
             <f:facet name="header">Delete</f:facet>
             <h:form>
@@ -50,5 +68,10 @@
             </h:form>
         </h:column>
     </h:dataTable>
+    
+            
+
+
+    
 </body>
 </html>

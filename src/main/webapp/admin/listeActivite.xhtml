@@ -10,7 +10,7 @@
   <h:form>
   <nav>
 	  <ul>
- 		  <li><h:commandLink action="#{navigationControl.doListeAtelier()}" value="Gestion des activites"/></li>
+ 		  <li><h:commandLink action="#{navigationControl.doListeActivite()}" value="Gestion des activites"/></li>
 		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
 		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
 		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
@@ -23,7 +23,9 @@
 
         <h:column>
             <f:facet name="header">Nom</f:facet>
-            #{atelier.nom}
+            <h:form>
+            	<h:commandLink  value="#{atelier.nom}" action="#{atelierControl.doGetDetails(atelier)}"></h:commandLink>
+            </h:form>
         </h:column>
 
         <h:column>
@@ -44,7 +46,9 @@
 
         <h:column>
             <f:facet name="header">Nom</f:facet>
-            #{cours.nom}
+            <h:form>
+            	<h:commandLink  value="#{cours.nom}" action="#{coursControl.doGetDetails(cours)}"></h:commandLink>
+            </h:form>
         </h:column>
 
         <h:column>
@@ -56,6 +60,27 @@
             <f:facet name="header">Delete</f:facet>
             <h:form>
             	<h:commandButton value="X" action="#{coursControl.remove(cours)}"></h:commandButton>
+            </h:form>
+        </h:column>
+    </h:dataTable>
+    
+	<h1>Liste des Evenements</h1>
+    <h:dataTable value="#{activiteControl.doFindAllEvenement()}" var="evenement">
+
+        <h:column>
+            <f:facet name="header">Nom</f:facet>
+            #{evenement.nom}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Description</f:facet>
+            #{evenement.description}
+        </h:column>
+        
+        <h:column>
+            <f:facet name="header">Delete</f:facet>
+            <h:form>
+            	<h:commandButton value="X" action="#{evenementControl.remove(evenement)}"></h:commandButton>
             </h:form>
         </h:column>
     </h:dataTable>

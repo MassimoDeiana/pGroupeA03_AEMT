@@ -8,6 +8,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import be.helha.aemt.entities.Atelier;
@@ -107,8 +108,9 @@ public class AtelierControl {
 	}
 	
 	public String doGetDetails(Atelier pub) {
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("atelier", pub);
 		atelier = pub;
-        return "detail";
+        return "/admin/detailAtelier.xhtml?faces-redirect=true";
     }
 	
 	public void remove(Atelier atelier) {
