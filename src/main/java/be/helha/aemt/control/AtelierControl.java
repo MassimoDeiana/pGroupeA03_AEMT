@@ -99,7 +99,7 @@ public class AtelierControl {
 		this.seance = seance;
 	}
 
-	public List<Atelier> findAll() {
+	public List<Atelier> doFindAll() {
         return atelierEJB.findAll();
     }
 	
