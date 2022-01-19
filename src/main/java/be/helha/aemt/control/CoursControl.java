@@ -6,8 +6,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import be.helha.aemt.ejb.CoursEJB;
-import be.helha.aemt.ejb.IAtelierRemoteEJB;
-import be.helha.aemt.ejb.ICoursRemoteEJB;
 import be.helha.aemt.entities.Atelier;
 import be.helha.aemt.entities.Cours;
 
@@ -16,7 +14,7 @@ import be.helha.aemt.entities.Cours;
 public class CoursControl {
 
 	@EJB
-	private ICoursRemoteEJB coursEJB;
+	private CoursEJB coursEJB;
 	
 	private Cours cours;
 	

@@ -26,55 +26,42 @@
   </h:form>
  
   		<h:form>
-  			<h1>Ajout d'un atelier</h1>
-			Nom   <h:inputText value="#{atelierControl.atelier.nom}"></h:inputText>
+  			<h1>Ajout d'un enement</h1>
+			Nom   <h:inputText value="#{evenementControl.evenement.nom}"></h:inputText>
 			<br/>
 			<br/>
 			
-			Description   <h:inputText value="#{atelierControl.atelier.description}" ></h:inputText>
+			Description   <h:inputText value="#{evenementControl.evenement.description}" ></h:inputText>
 			<br/>
 			<br/>
 		
-			Date de début   <b:dateTimePicker value="#{atelierControl.seance.dateDebut}" ></b:dateTimePicker>
+			Date de début   <b:dateTimePicker value="#{evenementControl.seance.dateDebut}" ></b:dateTimePicker>
 			<br/>
 			<br/>
-			Date de fin   <b:dateTimePicker value="#{atelierControl.seance.dateFin}"></b:dateTimePicker>
+			Date de fin   <b:dateTimePicker value="#{evenementControl.seance.dateFin}"></b:dateTimePicker>
 			<br/>
 			<br/>
 			  
-			   
-<!-- 			<b>Instructeurs</b> -->
-			
-<!-- 			EJB NULL DANS LE CONVERTER -->
-<!-- 				<h:selectOneListbox value="#{atelierControl.atelier.instructeur}" converterId="utilisateurConverter" > -->
-<!-- 			   		<f:selectItems value="#{atelierControl.instructeurs}" var="instructeur" itemLabel="#{instructeur.nom}" itemValue="#{instructeur}"></f:selectItems> -->
-					
-<!-- 				</h:selectOneListbox> -->
-				
-			
 			<br/>
 			<br/>
 				
 			<b>Adresse</b>	
 			<br/>
-			Rue   <h:inputText value="#{atelierControl.adresse.rue}"></h:inputText>
+			Rue   <h:inputText value="#{evenementControl.adresse.rue}"></h:inputText>
 			<br/>
 			<br/>
-			Numero   <h:inputText value="#{atelierControl.adresse.numero}"></h:inputText>
+			Numero   <h:inputText value="#{evenementControl.adresse.numero}"></h:inputText>
 			<br/>
 			<br/>
-			Ville   <h:inputText value="#{atelierControl.adresse.ville}"></h:inputText>
+			Ville   <h:inputText value="#{evenementControl.adresse.ville}"></h:inputText>
 			<br/>
 			<br/>
-			Code Postal   <h:inputText value="#{atelierControl.adresse.codePostal}"></h:inputText>
+			Code Postal   <h:inputText value="#{evenementControl.adresse.codePostal}"></h:inputText>
 			<br/>
 			<br/>
 					
-			Tarifs   <h:inputText value="#{atelierControl.atelier.tarif}"></h:inputText>
-			<br/>
-			<br/>
 
-			<h:commandButton value="Ajouter" action="#{atelierControl.addAtelier()}"></h:commandButton>
+			<h:commandButton value="Ajouter" action="#{evenementControl.addEvenement()}"></h:commandButton>
 		</h:form>
   
   

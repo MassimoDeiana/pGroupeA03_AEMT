@@ -10,12 +10,9 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.IAtelierRemoteEJB;
 import be.helha.aemt.entities.Atelier;
-import be.helha.aemt.ejb.IAdresseRemoteEJB;
-import be.helha.aemt.ejb.IAtelierRemoteEJB;
-import be.helha.aemt.ejb.ISeanceRemoteEJB;
-import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
+import be.helha.aemt.ejb.AtelierEJB;
+import be.helha.aemt.ejb.SeanceEJB;
 import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Adresse;
 import be.helha.aemt.entities.Atelier;
@@ -29,7 +26,7 @@ public class AtelierControl {
 
 	
 	@EJB
-	private IAtelierRemoteEJB atelierEJB;
+	private AtelierEJB atelierEJB;
 	private Atelier atelier;
 
 	
@@ -38,7 +35,7 @@ public class AtelierControl {
     private List<Utilisateur> instructeurs;
 
     @EJB
-    private ISeanceRemoteEJB seanceEJB;
+    private SeanceEJB seanceEJB;
 	private Seance seance;
 	
 	private Adresse adresse;

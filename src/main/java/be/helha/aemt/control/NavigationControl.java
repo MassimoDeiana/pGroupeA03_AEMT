@@ -7,10 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.EntityEJB;
-import be.helha.aemt.ejb.IAtelierRemoteEJB;
-import be.helha.aemt.ejb.IEntityRemoteEJB;
-import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
+import be.helha.aemt.ejb.AtelierEJB;
 import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Atelier;
 import be.helha.aemt.entities.Utilisateur;
@@ -21,10 +18,10 @@ public class NavigationControl {
 	
 	
 	@EJB
-	IUtilisateurRemoteEJB utilisateurEJB;
+	UtilisateurEJB utilisateurEJB;
 	
 	@EJB
-	IAtelierRemoteEJB atelierEJB;
+	AtelierEJB atelierEJB;
 	
 	
 	public List<Utilisateur> doNext() {

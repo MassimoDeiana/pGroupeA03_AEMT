@@ -1,5 +1,6 @@
 package be.helha.aemt.converter;
 
+import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
@@ -12,12 +13,10 @@ import javax.faces.convert.FacesConverter;
 import javax.inject.Named;
 
 import be.helha.aemt.dao.UtilisateurDAO;
-import be.helha.aemt.ejb.ICoursRemoteEJB;
 import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Utilisateur;
 
-@Named
-@RequestScoped
+@ManagedBean
 @FacesConverter(forClass = Utilisateur.class)
 public class UtilisateurConverter implements Converter<Utilisateur>{
 

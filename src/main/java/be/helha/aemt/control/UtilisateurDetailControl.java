@@ -6,7 +6,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
+import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Activite;
 import be.helha.aemt.entities.Utilisateur;
 
@@ -15,7 +15,7 @@ import be.helha.aemt.entities.Utilisateur;
 public class UtilisateurDetailControl {
 
 	@EJB
-	private IUtilisateurRemoteEJB ejb;
+	private UtilisateurEJB ejb;
 	
 	private Utilisateur utilisateur;
 	
