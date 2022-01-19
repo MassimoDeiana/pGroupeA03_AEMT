@@ -6,7 +6,7 @@ import javax.ejb.Remote;
 
 import be.helha.aemt.dao.DAOJTA;
 
-@Remote
+
 public interface IEntityRemoteEJB<T> {
 	
 	

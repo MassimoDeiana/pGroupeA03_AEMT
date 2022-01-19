@@ -13,11 +13,8 @@ import javax.inject.Named;
 
 import be.helha.aemt.dao.UtilisateurDAO;
 import be.helha.aemt.ejb.ICoursRemoteEJB;
-import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
 import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Utilisateur;
-
-
 
 @Named
 @RequestScoped
@@ -25,9 +22,8 @@ import be.helha.aemt.entities.Utilisateur;
 public class UtilisateurConverter implements Converter<Utilisateur>{
 
 	@EJB
-	private IUtilisateurRemoteEJB ejb;
-	
-	
+	private UtilisateurEJB ejb;
+		
 	@Override
 	public Utilisateur getAsObject(FacesContext context, UIComponent component, String submittedValue) {
 	    System.out.println(submittedValue);

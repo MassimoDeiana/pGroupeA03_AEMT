@@ -27,7 +27,7 @@
     <web-resource-collection>
       <web-resource-name>Protected Admin Area</web-resource-name>
       <description></description>
-      <url-pattern>/ateliers.xhtml/*</url-pattern>
+      <url-pattern>/admin/*</url-pattern>
       <http-method>GET</http-method>
       <http-method>POST</http-method>
       <http-method>HEAD</http-method>
@@ -38,8 +38,6 @@
     </web-resource-collection>
     <auth-constraint>
       <description></description>
-      <role-name>utilisateur</role-name>
-      <role-name>instructeur</role-name>
       <role-name>admin</role-name>
     </auth-constraint>
     <user-data-constraint>
@@ -48,11 +46,11 @@
   </security-constraint>
   
    <security-constraint>
-    <display-name>Admin Pages</display-name>
+    <display-name>Utilisateur Pages</display-name>
     <web-resource-collection>
       <web-resource-name>Protected Admin Area</web-resource-name>
       <description></description>
-      <url-pattern>/gestionUtilisateur.xhtml/*</url-pattern>
+      <url-pattern>/utilisateur/*</url-pattern>
       <http-method>GET</http-method>
       <http-method>POST</http-method>
       <http-method>HEAD</http-method>
@@ -64,6 +62,8 @@
     <auth-constraint>
       <description></description>
       <role-name>admin</role-name>
+	  <role-name>utilisateur</role-name>
+      <role-name>instructeur</role-name>
     </auth-constraint>
     <user-data-constraint>
       <transport-guarantee>NONE</transport-guarantee>

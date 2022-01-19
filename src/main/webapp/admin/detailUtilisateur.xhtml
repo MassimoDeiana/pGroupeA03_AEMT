@@ -6,7 +6,7 @@
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-    <h:dataTable value="#{utilisateurControl.getUtilisateur()}" var="utilisateur">
+    <h:dataTable value="#{utilisateurDetailControl.getUtilisateur()}" var="utilisateur">
         <h:column>
             <f:facet name="header">Id</f:facet>
             #{utilisateur.id}
@@ -24,7 +24,7 @@
 	            
     </h:dataTable>
     
-    	 <h:dataTable value="#{utilisateurControl.getUtilisateur().activites}" var="activite">	
+    	 <h:dataTable value="#{utilisateurDetailControl.getUtilisateur().activites}" var="activite">	
 	        <h:column>
 	            <f:facet name="header">activite</f:facet>
 	            #{activite.nom}
@@ -33,7 +33,7 @@
 	        <h:column>
 	            <f:facet name="header">Delete</f:facet>
 	            <h:form>
-	            	<h:commandButton value="X" action="#{utilisateurControl.remove(utilisateur)}"></h:commandButton>
+	            	<h:commandButton value="X" action="#{utilisateurDetailControl.removeActivite(activite)}"></h:commandButton>
 	            </h:form>
 	        </h:column>
 	    </h:dataTable>

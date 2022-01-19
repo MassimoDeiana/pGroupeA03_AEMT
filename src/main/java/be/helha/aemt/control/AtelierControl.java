@@ -16,6 +16,7 @@ import be.helha.aemt.ejb.IAdresseRemoteEJB;
 import be.helha.aemt.ejb.IAtelierRemoteEJB;
 import be.helha.aemt.ejb.ISeanceRemoteEJB;
 import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
+import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Adresse;
 import be.helha.aemt.entities.Atelier;
 import be.helha.aemt.entities.Seance;
@@ -33,7 +34,7 @@ public class AtelierControl {
 
 	
 	@EJB
-	private IUtilisateurRemoteEJB uEJB;
+	private UtilisateurEJB uEJB;
     private List<Utilisateur> instructeurs;
 
     @EJB
@@ -51,6 +52,10 @@ public class AtelierControl {
 		instructeurs = new ArrayList<Utilisateur>();
 		instructeurs = doFindAllInstructeur();
 	
+	}
+	
+	public List<Utilisateur> findInstructeur(){
+		return uEJB.findInstructeur();
 	}
 	
 	public List<Utilisateur> getInstructeurs() {
@@ -101,7 +106,7 @@ public class AtelierControl {
     }
 	
 	public List<Utilisateur> doFindAllInstructeur() {
-		return uEJB.findAll();
+		return uEJB.findInstructeur();
 	}
 	
 	public String doGetDetails(Atelier pub) {

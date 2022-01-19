@@ -7,14 +7,15 @@
 </head>
 <h:body>
   <h2>Liste des ateliers</h2>
+  <h:form>
   <nav>
-  <ul>
-	  <li><h:link outcome="gestionUtilisateur" value="Gestion des utilisateur"/></li>
-	  <li><h:link outcome="gestionAtelier" value="Gestion des ateliers"/></li>
-	  <li><h:link outcome="agenda" value="Agenda"/></li>
-	  <li><h:link outcome="quiSommesNous" value="Qui sommes nous ?"/></li>
-  </ul>
+	  <ul>
+ 		  <li><h:commandLink action="#{navigationControl.doListeAtelier()}" value="Gestion des ateliers"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
+	  </ul>
   </nav>
+  </h:form>
   
   
 </h:body>

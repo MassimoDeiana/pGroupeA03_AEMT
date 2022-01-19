@@ -6,12 +6,23 @@
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+
+  <nav>
+	  <ul>
+		  <li><h:link outcome="listeUtilisateur" value="Gestion des utilisateurs"/></li>
+		  <li><h:link outcome="listeAtelier" value="Gestion des ateliers"/></li>
+		  <li><h:link outcome="listeCours" value="Gestion des cours"/></li>
+		  <li><h:link outcome="logout" value="Se déconnecter"/></li>
+
+	  </ul>
+  </nav>
+
     <h1>Liste des utilisateurs</h1>
     <h:dataTable value="#{utilisateurControl.findAll()}" var="utilisateur">
         <h:column>
             <f:facet name="header">Nom</f:facet>
             <h:form>
-            	<h:commandLink value="#{utilisateur.nom}" action="#{utilisateurControl.doGetDetails(utilisateur)}"></h:commandLink>
+            	<h:commandLink  value="#{utilisateur.nom}" action="#{utilisateurControl.doGetDetails(utilisateur)}"></h:commandLink>
             </h:form>
         </h:column>
 

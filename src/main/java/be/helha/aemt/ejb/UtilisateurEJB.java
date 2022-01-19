@@ -48,5 +48,9 @@ public class UtilisateurEJB implements IUtilisateurRemoteEJB {
 	public Utilisateur update(Utilisateur u1, Utilisateur u2) {
 		return dao.updateActivites(u1, u2);
 	}
+	
+	public List<Utilisateur> findInstructeur(){
+		return dao.findInstructeur();
+	}
 
 }

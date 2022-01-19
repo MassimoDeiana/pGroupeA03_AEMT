@@ -33,6 +33,54 @@ public class NavigationControl {
 
 	}
 	
+	public String doRegister() {
+        return "/register.xhtml?faces-redirect=true";
+    }
+
+    public String doLogin() {
+        return "/login.xhtml?faces-redirect=true";
+    }
+
+    public String doQuiSommesNous() {
+        return "/quiSommesNous.xhtml?faces-redirect=true";
+    }
+
+    public String doAteliers() {
+        return "/ateliers.xhtml?faces-redirect=true";
+    }
+
+    public String doPleineConscience() {
+        return "/pleineConscience.xhtml?faces-redirect=true";
+    }
+
+    public String doAgenda() {
+		return "/agenda.xhtml?faces-redirect=true";
+	}
+    
+    public String doProfil() {
+        return "/utilisateur/profil.xhtml?faces-redirect=true";
+    }
+	
+	public String doIndexAdmin() {
+		return "/admin/indexAdmin.xhtml?faces-redirect=true";
+	}
 	
 
+	public String doAjoutAtelier() {
+		return "/admin/ajoutAtelier.xhmlt?faces-redirect=true";
+	}
+	
+	public String doAjoutUtilisateur() {
+		return "/admin/ajoutUtilisateur.xhtml?face-redirect=true";
+	}
+	
+	public String doListeUtilisateur() {
+		return "/admin/listeUtilisateur.xhtml?face-redirect=true";
+	}
+	
+	public String doListeAtelier() {
+		return "/admin/listeAtelier.xhtml?face-redirect=true";
+	}
+	
+	
 }
