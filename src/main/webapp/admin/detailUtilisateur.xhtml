@@ -6,6 +6,19 @@
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+
+  <h:form>
+  <nav>
+	  <ul>
+ 		  <li><h:commandLink action="#{navigationControl.doListeAtelier()}" value="Gestion des activites"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
+	  </ul>
+  </nav>
+  </h:form>
+
     <h:dataTable value="#{utilisateurDetailControl.getUtilisateur()}" var="utilisateur">
         <h:column>
             <f:facet name="header">Id</f:facet>
@@ -29,6 +42,10 @@
 	            <f:facet name="header">activite</f:facet>
 	            #{activite.nom}
 	        </h:column>
+	        
+	        <h:column rendered="#{utilisateurDetailControl.getSizeofActivities() == 0}">
+        		<h:outputText value="vous n'avez pas d'activités pour l'instant !" />
+    		</h:column>
 		        
 	        <h:column>
 	            <f:facet name="header">Delete</f:facet>

@@ -5,6 +5,11 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -35,11 +40,23 @@ public class UtilisateurControl {
 	
 	public String doAdd() {
 		utilisateur.setRole("utilisateur");
+		try {
+			utilisateur.setMdp(encode(utilisateur.getMdp()));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ejb.add(utilisateur);
 		return "listUtilisateur";
 	}
 	
 	public String doAddWithAdmin() {
+		try {
+			utilisateur.setMdp(encode(utilisateur.getMdp()));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ejb.add(utilisateur);
 		return "listUtilisateur";
 	}
@@ -92,6 +109,13 @@ public class UtilisateurControl {
 		Utilisateur u = new Utilisateur(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
 		return ejb.findByMail(u);
 	}
+	
+
+	
+	public static String encode(final String clearText) throws NoSuchAlgorithmException {
+        return new String(
+                Base64.getEncoder().encode(MessageDigest.getInstance("SHA-256").digest(clearText.getBytes(StandardCharsets.UTF_8))));
+    }
 	
 	
 }

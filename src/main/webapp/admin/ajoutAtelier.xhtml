@@ -8,21 +8,22 @@
   xmlns:p="http://primefaces.org/ui">
 
 <head>
-
-	<title>Utilisateurs</title>
+	<title>Ajout atelier</title>
 	<meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
-
 </head>
 <h:body>
   <h2>Navigation</h2>
+  <h:form>
   <nav>
-  <ul>
-	  <li><h:link outcome="pleineConscience" value="PleineConscience"/></li>
-	  <li><h:link outcome="ateliers" value="Ateliers"/></li>
-	  <li><h:link outcome="agenda" value="Agenda"/></li>
-	  <li><h:link outcome="quiSommesNous" value="Qui sommes nous ?"/></li>
-  </ul>
+	  <ul>
+ 		  <li><h:commandLink action="#{navigationControl.doListeAtelier()}" value="Gestion des activites"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
+	  </ul>
   </nav>
+  </h:form>
  
   		<h:form>
   			<h1>Ajout d'un atelier</h1>

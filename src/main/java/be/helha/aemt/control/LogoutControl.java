@@ -12,6 +12,6 @@ public class LogoutControl {
 	public String logout() {
 	    ((HttpSession) FacesContext.getCurrentInstance().getExternalContext()
 	         .getSession(false)).invalidate();
-	     return "/index";
+	     return "/index.xhtml?faces-redirect=true";
 	}
 }

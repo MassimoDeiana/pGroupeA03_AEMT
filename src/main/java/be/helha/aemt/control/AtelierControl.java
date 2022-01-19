@@ -114,8 +114,8 @@ public class AtelierControl {
         return "detail";
     }
 	
-	public void remove(Atelier Atelier) {
-       atelierEJB.delete(Atelier);
+	public void remove(Atelier atelier) {
+       atelierEJB.delete(atelier);
     }
 	
 	public String updateDirection(Atelier pub) {

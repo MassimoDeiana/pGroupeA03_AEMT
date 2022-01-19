@@ -40,4 +40,14 @@ public class UtilisateurDetailControl {
 		
 	}
 	
+	public int getSizeofActivities() {
+		System.out.println(utilisateur.getActivites().size());
+        return utilisateur.getActivites().size();
+    }
+	
+	public Utilisateur getLogged() {
+		Utilisateur u = new Utilisateur(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+		return ejb.findByMail(u);
+	}
+	
 }
