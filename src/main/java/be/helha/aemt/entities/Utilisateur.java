@@ -127,7 +127,7 @@ public class Utilisateur implements Serializable {
             return false;
         return activites.remove(t);
     }
-
+	
 	@Override
     public int hashCode() {
         final int prime = 31;

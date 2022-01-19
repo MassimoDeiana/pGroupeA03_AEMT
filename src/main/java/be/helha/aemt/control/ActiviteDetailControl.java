@@ -6,8 +6,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
+import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Activite;
+import be.helha.aemt.entities.Atelier;
 import be.helha.aemt.entities.Cours;
 import be.helha.aemt.entities.Utilisateur;
 
@@ -16,7 +17,7 @@ import be.helha.aemt.entities.Utilisateur;
 public class ActiviteDetailControl {
 	
 	@EJB
-	private IUtilisateurRemoteEJB ejb;
+	private UtilisateurEJB ejb;
 
 	private Activite activite;
 	private Utilisateur utilisateur;
@@ -34,8 +35,10 @@ public class ActiviteDetailControl {
 		if(activite != null) {
 			if(activite.getClass().equals(Cours.class))
 				return 1;
-			else
+			else if(activite.getClass().equals(Atelier.class))
 				return 2;
+			else
+				return 3;
 		}
 		return 0;
 	}

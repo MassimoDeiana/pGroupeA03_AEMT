@@ -8,11 +8,10 @@ import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.IActiviteRemoteEJB;
-import be.helha.aemt.ejb.IAtelierRemoteEJB;
-import be.helha.aemt.ejb.ICoursRemoteEJB;
-import be.helha.aemt.ejb.IEvenementRemoteEJB;
-import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
+import be.helha.aemt.ejb.AtelierEJB;
+import be.helha.aemt.ejb.CoursEJB;
+import be.helha.aemt.ejb.EvenementEJB;
+import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Activite;
 import be.helha.aemt.entities.Atelier;
 import be.helha.aemt.entities.Cours;
@@ -24,16 +23,16 @@ import be.helha.aemt.entities.Utilisateur;
 public class ActiviteControl {
 
 	@EJB
-	private IEvenementRemoteEJB evenementEJB;
+	private EvenementEJB evenementEJB;
 	
 	@EJB
-	private ICoursRemoteEJB coursEJB;
+	private CoursEJB coursEJB;
 	
 	@EJB
-	private IAtelierRemoteEJB atelierEJB;
+	private AtelierEJB atelierEJB;
 	
 	@EJB
-	private IUtilisateurRemoteEJB utilisateurEJB;
+	private UtilisateurEJB utilisateurEJB;
 	
 	private Activite activite;
 	

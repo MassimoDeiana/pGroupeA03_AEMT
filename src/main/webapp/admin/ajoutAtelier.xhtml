@@ -9,23 +9,22 @@
 
 <head>
 <link rel="stylesheet" href="./style.css"></link>
-	<title>Utilisateurs</title>
+	<title>Ajout atelier</title>
 	<meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
-
 </head>
 <h:body>
   <h2>Navigation</h2>
+  <h:form>
   <nav>
 	  <ul>
-		  <li><h:link outcome="#{navigationControl.doPleineConscience()}" value="PleineConscience"/></li>
-		  <li><h:link outcome="#{navigationControl.doAteliers()}" value="Ateliers"/></li>
-		  <li><a href="">Agenda</a></li>
-		  <li><h:link outcome="#{navigationControl.doQuiSommesNous()}" value="Qui sommes nous ?"/></li>
-		  <li><h:link outcome="#{navigationControl.doLogin()}" value="Me connecter"/></li>
-		  <li><h:link outcome="#{navigationControl.doProfil()}" value="Profil"/></li>
-		  <li><h:link outcome="#{navigationControl.doRegister()}" value="Me créer un profil"/></li>
+ 		  <li><h:commandLink action="#{navigationControl.doListeAtelier()}" value="Gestion des activites"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
 	  </ul>
   </nav>
+  </h:form>
  
   		<h:form>
   			<h1>Ajout d'un atelier</h1>
@@ -44,15 +43,19 @@
 			<br/>
 			<br/>
 			  
-			  <!--  
-			<b>Instructeurs</b>
+			   
+<!-- 			<b>Instructeurs</b> -->
+			
+<!-- 			EJB NULL DANS LE CONVERTER -->
+<!-- 				<h:selectOneListbox value="#{atelierControl.atelier.instructeur}" converterId="utilisateurConverter" > -->
+<!-- 			   		<f:selectItems value="#{atelierControl.instructeurs}" var="instructeur" itemLabel="#{instructeur.nom}" itemValue="#{instructeur}"></f:selectItems> -->
+					
+<!-- 				</h:selectOneListbox> -->
+				
+			
 			<br/>
-				<h:selectOneListbox value="#{atelierControl.atelier.instructeur}" converterId="UtilisateurConverter">
-			   		<f:selectItems value="#{atelierControl.instructeurs}" var="instructeur" itemLabel="#{instructeur.nom}" itemValue="#{instructeur}"></f:selectItems>
-				</h:selectOneListbox>
 			<br/>
-			<br/>
-				-->
+				
 			<b>Adresse</b>	
 			<br/>
 			Rue   <h:inputText value="#{atelierControl.adresse.rue}"></h:inputText>

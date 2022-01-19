@@ -9,17 +9,21 @@
 
 <h:body>
   <h2>Accueil</h2>
+  <h:form>
   <nav>
 	  <ul>
-		  <li><h:link outcome="#{navigationControl.doPleineConscience()}" value="PleineConscience"/></li>
-		  <li><h:link outcome="#{navigationControl.doAteliers()}" value="Ateliers"/></li>
-		  <li><a href="">Agenda</a></li>
-		  <li><h:link outcome="#{navigationControl.doQuiSommesNous()}" value="Qui sommes nous ?"/></li>
-		  <li><h:link outcome="#{navigationControl.doLogin()}" value="Me connecter"/></li>
-		  <li><h:link outcome="#{navigationControl.doProfil()}" value="Profil"/></li>
-		  <li><h:link outcome="#{navigationControl.doRegister()}" value="Me créer un profil"/></li>
+ 		  <li><h:commandLink action="#{navigationControl.doPleineConscience()}" value="PleineConscience"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAteliers()}" value="Ateliers"/></li>
+		  <li><h:commandLink action="agenda" value="Agenda"/></li>
+		  <li><h:commandLink action="#{navigationControl.doQuiSommesNous()}" value="Qui sommes nous ?"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 2}" action="#{navigationControl.doProfil()}" value="Profil"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 0}" action="#{navigationControl.doLogin()}" value="Me connecter"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 0}" action="#{navigationControl.doRegister()}" value="Me créer un profil"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 1}" action="#{navigationControl.doIndexAdmin()}" value="Admin"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
 	  </ul>
   </nav>
+  </h:form>
 
 </h:body>
 </html>

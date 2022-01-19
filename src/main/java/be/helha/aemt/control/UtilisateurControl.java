@@ -5,6 +5,11 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +17,6 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
 import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Utilisateur;
 
@@ -24,14 +28,34 @@ public class UtilisateurControl {
 	private UtilisateurEJB ejb;
 	
 	private Utilisateur utilisateur;
+	private Utilisateur t = new Utilisateur();
+
 	
 	@PostConstruct
 	public void init() {
+		System.out.println(ejb);
 		utilisateur = new Utilisateur();
 	}
 	
 	public String doAdd() {
 		utilisateur.setRole("utilisateur");
+		try {
+			utilisateur.setMdp(encode(utilisateur.getMdp()));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ejb.add(utilisateur);
+		return "listUtilisateur";
+	}
+	
+	public String doAddWithAdmin() {
+		try {
+			utilisateur.setMdp(encode(utilisateur.getMdp()));
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ejb.add(utilisateur);
 		return "listUtilisateur";
 	}
@@ -54,8 +78,9 @@ public class UtilisateurControl {
     }
 	
 	public String doGetDetails(Utilisateur pub) {
+		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("utilisateur", pub);
 		utilisateur = pub;
-        return "detailUtilisateur";
+        return "detailUtilisateur.xhtml?faces-redirect=true";
     }
 	
 	public void remove(Utilisateur Utilisateur) {
@@ -84,6 +109,11 @@ public class UtilisateurControl {
             }
         }
         return 0;
+	}
+	
+	public static String encode(final String clearText) throws NoSuchAlgorithmException {
+        return new String(
+                Base64.getEncoder().encode(MessageDigest.getInstance("SHA-256").digest(clearText.getBytes(StandardCharsets.UTF_8))));
     }
 	
 	

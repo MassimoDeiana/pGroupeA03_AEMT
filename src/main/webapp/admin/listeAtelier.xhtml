@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 <head>
-<link rel="stylesheet" href="./style.css"></link>
+
 <title>Liste</title>
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+
   <h:form>
   <nav>
 	  <ul>
@@ -17,36 +18,47 @@
 	  </ul>
   </nav>
   </h:form>
-    <h1>Liste des utilisateurs</h1>
-    <h:dataTable value="#{utilisateurControl.findAll()}" var="utilisateur">
+    <h1>Liste des ateliers</h1>
+    <h:dataTable value="#{activiteControl.doFindAllAtelier()}" var="atelier">
+
         <h:column>
             <f:facet name="header">Nom</f:facet>
-            <h:form>
-            	<h:commandLink  value="#{utilisateur.nom}" action="#{utilisateurControl.doGetDetails(utilisateur)}"></h:commandLink>
-            </h:form>
+            #{atelier.nom}
         </h:column>
 
         <h:column>
-            <f:facet name="header">Prenom</f:facet>
-            #{utilisateur.prenom}
-        </h:column>
-
-        <h:column>
-            <f:facet name="header">mail</f:facet>
-            #{utilisateur.mail}
-        </h:column>
-        
-        <h:column>
-            <f:facet name="header">Role</f:facet>
-            #{utilisateur.role}
+            <f:facet name="header">Description</f:facet>
+            #{atelier.description}
         </h:column>
         
         <h:column>
             <f:facet name="header">Delete</f:facet>
             <h:form>
-            	<h:commandButton value="X" action="#{utilisateurControl.remove(utilisateur)}"></h:commandButton>
+            	<h:commandButton value="X" action="#{atelierControl.remove(atelier)}"></h:commandButton>
             </h:form>
         </h:column>
     </h:dataTable>
+    
+       <h1>Liste des cours</h1>
+    <h:dataTable value="#{activiteControl.doFindAllCours()}" var="cours">
+
+        <h:column>
+            <f:facet name="header">Nom</f:facet>
+            #{cours.nom}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Description</f:facet>
+            #{cours.description}
+        </h:column>
+        
+        <h:column>
+            <f:facet name="header">Delete</f:facet>
+            <h:form>
+            	<h:commandButton value="X" action="#{coursControl.remove(cours)}"></h:commandButton>
+            </h:form>
+        </h:column>
+    </h:dataTable>
+    
 </body>
 </html>

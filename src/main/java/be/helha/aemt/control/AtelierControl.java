@@ -10,12 +10,10 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-import be.helha.aemt.ejb.IAtelierRemoteEJB;
 import be.helha.aemt.entities.Atelier;
-import be.helha.aemt.ejb.IAdresseRemoteEJB;
-import be.helha.aemt.ejb.IAtelierRemoteEJB;
-import be.helha.aemt.ejb.ISeanceRemoteEJB;
-import be.helha.aemt.ejb.IUtilisateurRemoteEJB;
+import be.helha.aemt.ejb.AtelierEJB;
+import be.helha.aemt.ejb.SeanceEJB;
+import be.helha.aemt.ejb.UtilisateurEJB;
 import be.helha.aemt.entities.Adresse;
 import be.helha.aemt.entities.Atelier;
 import be.helha.aemt.entities.Seance;
@@ -28,16 +26,16 @@ public class AtelierControl {
 
 	
 	@EJB
-	private IAtelierRemoteEJB atelierEJB;
+	private AtelierEJB atelierEJB;
 	private Atelier atelier;
 
 	
 	@EJB
-	private IUtilisateurRemoteEJB uEJB;
+	private UtilisateurEJB uEJB;
     private List<Utilisateur> instructeurs;
 
     @EJB
-    private ISeanceRemoteEJB seanceEJB;
+    private SeanceEJB seanceEJB;
 	private Seance seance;
 	
 	private Adresse adresse;
@@ -51,6 +49,10 @@ public class AtelierControl {
 		instructeurs = new ArrayList<Utilisateur>();
 		instructeurs = doFindAllInstructeur();
 	
+	}
+	
+	public List<Utilisateur> findInstructeur(){
+		return uEJB.findInstructeur();
 	}
 	
 	public List<Utilisateur> getInstructeurs() {
@@ -101,7 +103,7 @@ public class AtelierControl {
     }
 	
 	public List<Utilisateur> doFindAllInstructeur() {
-		return uEJB.findAll();
+		return uEJB.findInstructeur();
 	}
 	
 	public String doGetDetails(Atelier pub) {
@@ -109,8 +111,8 @@ public class AtelierControl {
         return "detail";
     }
 	
-	public void remove(Atelier Atelier) {
-       atelierEJB.delete(Atelier);
+	public void remove(Atelier atelier) {
+       atelierEJB.delete(atelier);
     }
 	
 	public String updateDirection(Atelier pub) {

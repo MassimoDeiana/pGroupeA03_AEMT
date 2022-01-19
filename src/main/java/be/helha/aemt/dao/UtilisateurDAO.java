@@ -40,6 +40,17 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
     	
     	return find;
     }
+    
+    public List<Utilisateur> findInstructeur() {
+        String qUtilisateur = "Select u from Utilisateur u where u.role=:role";
+        Query queryUtilisateur = em.createQuery(qUtilisateur);
+
+        queryUtilisateur.setParameter("role", "instructeur");
+
+        List<Utilisateur> utilisateurList = queryUtilisateur.getResultList();
+
+        return utilisateurList.isEmpty()?null : utilisateurList;
+    }
 
     public Utilisateur findByMail(Utilisateur u) {
         if(u == null) {

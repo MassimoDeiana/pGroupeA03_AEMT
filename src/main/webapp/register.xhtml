@@ -6,17 +6,19 @@
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
 </head>
     <h:body>
-   		<nav>
-		  	<ul>
-			  <li><h:link outcome="#{navigationControl.doPleineConscience()}" value="PleineConscience"/></li>
-			  <li><h:link outcome="#{navigationControl.doAteliers()}" value="Ateliers"/></li>
-			  <li><a href="">Agenda</a></li>
-			  <li><h:link outcome="#{navigationControl.doQuiSommesNous()}" value="Qui sommes nous ?"/></li>
-			  <li><h:link outcome="#{navigationControl.doLogin()}" value="Me connecter"/></li>
-			  <li><h:link outcome="#{navigationControl.doProfil()}" value="Profil"/></li>
-			  <li><h:link outcome="#{navigationControl.doRegister()}" value="Me créer un profil"/></li>
-		  	</ul>
-  		</nav>
+  <nav>
+	  <ul>
+		  <li><h:link outcome="pleineConscience" value="PleineConscience"/></li>
+		  <li><h:link outcome="ateliers" value="Ateliers"/></li>
+		  <li><h:link outcome="agenda" value="Agenda"/></li>
+		  <li><h:link outcome="quiSommesNous" value="Qui sommes nous ?"/></li>
+		  <li><h:link rendered="#{utilisateurControl.getRole() == 2}" outcome="profil" value="Profil"/></li>
+		  <li><h:link rendered="#{utilisateurControl.getRole() == 0}" outcome="login" value="Me connecter"/></li>
+		  <li><h:link rendered="#{utilisateurControl.getRole() == 0}" outcome="register" value="Me créer un profil"/></li>
+		  <li><h:link rendered="#{utilisateurControl.getRole() == 1}" outcome="#{navigationControl.doIndexAdmin()}" value="Admin"/></li>
+		  <li><h:link rendered="#{utilisateurControl.getRole() == 2 || utilisateurControl.getRole() == 1}" outcome="#{logoutControl.logout()}" value="Se déconnecter"/></li>
+	  </ul>
+  </nav>
         <h:form>
 			<h:outputLabel value="Prénom"/><br/>
 			<h:inputText value="#{utilisateurControl.utilisateur.prenom}" /><br/>
@@ -25,7 +27,7 @@
 			<h:outputLabel value="E-mail"/><br/>
 			<h:inputText value="#{utilisateurControl.utilisateur.mail}" /><br/><br/>
 			<h:outputLabel value="Mot de passe"/><br/>
-			<h:inputText value="#{utilisateurControl.utilisateur.mdp}" /><br/><br/>
+			<h:inputSecret  value="#{utilisateurControl.utilisateur.mdp}" /><br/><br/>
 			<h:commandButton value="Me créer un profil" 
 				action="#{utilisateurControl.doAdd()}" />
 		</h:form> 

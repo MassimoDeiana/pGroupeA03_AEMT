@@ -1,5 +1,6 @@
 package be.helha.aemt.control;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -18,14 +19,6 @@ public class UtilisateurDetailControl {
 
     private Utilisateur utilisateur;
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
-    }
-
-    public void setUtilisateur(Utilisateur Utilisateur) {
-        this.utilisateur = Utilisateur;
-    }
-
     public void removeActivite(Activite activite) {
         Utilisateur tmp = ejb.findByMail(
 				new Utilisateur(
@@ -37,4 +30,27 @@ public class UtilisateurDetailControl {
         ejb.update(utilisateur, tmp);
     }
 
+	@PostConstruct
+	public void init() {
+		utilisateur = (Utilisateur) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("utilisateur");
+	}
+	
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur Utilisateur) {
+		this.utilisateur = Utilisateur;
+	}
+	
+	public int getSizeofActivities() {
+		System.out.println(utilisateur.getActivites().size());
+        return utilisateur.getActivites().size();
+    }
+	
+	public Utilisateur getLogged() {
+		Utilisateur u = new Utilisateur(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+		return ejb.findByMail(u);
+	}
+	
 }

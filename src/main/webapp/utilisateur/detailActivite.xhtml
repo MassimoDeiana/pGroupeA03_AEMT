@@ -9,22 +9,25 @@
 
 <h:body>
   <h2>Détail de l'activité</h2>
+  <h:form>
   <nav>
 	  <ul>
-		  <li><h:link outcome="pleineConscience" value="PleineConscience"/></li>
-		  <li><h:link outcome="ateliers" value="Ateliers"/></li>
-		  <li><a href="">Agenda</a></li>
-		  <li><h:link outcome="quiSommesNous" value="Qui sommes nous ?"/></li>
-		  <li><h:link outcome="login" value="Me connecter"/></li>
-		  <li><h:link outcome="profil" value="Profil"/></li>
-		  <li><h:link outcome="register" value="Me créer un profil"/></li>
+ 		  <li><h:commandLink action="#{navigationControl.doPleineConscience()}" value="PleineConscience"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAteliers()}" value="Ateliers"/></li>
+		  <li><h:commandLink action="agenda" value="Agenda"/></li>
+		  <li><h:commandLink action="#{navigationControl.doQuiSommesNous()}" value="Qui sommes nous ?"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 2}" action="#{navigationControl.doProfil()}" value="Profil"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 0}" action="#{navigationControl.doLogin()}" value="Me connecter"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 0}" action="#{navigationControl.doRegister()}" value="Me créer un profil"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 1}" action="#{navigationControl.doIndexAdmin()}" value="Admin"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
 	  </ul>
   </nav>
-
+  </h:form>
   <h2>#{activiteControl.getActivite().nom}</h2>
   <h3>Plus d'informations sur l'événement</h3>
-  <h:dataTable value="#{activiteControl.getActivite()}" var="activite">
-	<h:column>
+  <h:dataTable value="#{activiteDetailControl.getActivite()}" var="activite">
+	<h:column rendered="#{activiteDetailControl.getTypeOfActivite() == 1}">
 		<h:outputText value="#{activite.description}"></h:outputText>
 		<br/>
 		<h:outputText value="Tarifs : "></h:outputText>
@@ -37,10 +40,7 @@
 		<h:outputText value="#{activite.adresse.rue} #{activite.adresse.numero} à #{activite.adresse.codePostal} #{activite.adresse.ville}"></h:outputText>
 		<br/>
 		<h:outputText value="Toutes les dates"></h:outputText>
-		<h:form>
-			<h:commandButton value="Participer" action="#{activiteControl.doParticiper()}" />
-		</h:form>
-		<!--  <h:dataTable value="#{activite.seances}" var="seance">
+		<h:dataTable value="#{activite.seances}" var="seance">
 			<h:column>
 				<h:outputText value="#{seance.dateDebut}">
     				<f:convertDateTime pattern="'Le' dd MMMM 'de' HH:mm 'à' "/>
@@ -49,7 +49,49 @@
     				<f:convertDateTime pattern="HH:mm"/>
     			</h:outputText>
 			</h:column>
-		</h:dataTable>-->
+		</h:dataTable>
+	</h:column>
+	<h:column rendered="#{activiteDetailControl.getTypeOfActivite() == 2}">
+		<h:outputText value="#{activite.description}"></h:outputText>
+		<br/>
+		<h:outputText value="Tarifs : "></h:outputText>
+		<br/>
+		<h:outputText value="Prix public&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;"></h:outputText>
+		<h:outputText value="#{activite.tarif}">
+			<f:convertNumber currencySymbol = "€" type = "currency" />
+		</h:outputText>
+		<br/><br/>
+		<h:outputText value="#{activite.adresse.rue} #{activite.adresse.numero} à #{activite.adresse.codePostal} #{activite.adresse.ville}"></h:outputText>
+		<br/>
+		<h:outputText value="La date"></h:outputText>
+		<h:column>
+			<br/>
+			<h:outputText value="#{activite.seance.dateDebut}">
+   				<f:convertDateTime pattern="'Le' dd MMMM 'de' HH:mm 'à' "/>
+   			</h:outputText>
+   			<h:outputText value="#{activite.seance.dateFin}">
+   				<f:convertDateTime pattern="HH:mm"/>
+   			</h:outputText>
+		</h:column>
+	</h:column>
+	<h:column rendered="#{activiteDetailControl.getTypeOfActivite() == 3}">
+		<h:outputText value="#{activite.description}"></h:outputText>
+		<br/><br/>
+		<h:outputText value="#{activite.adresse.rue} #{activite.adresse.numero} à #{activite.adresse.codePostal} #{activite.adresse.ville}"></h:outputText>
+		<br/>
+		<h:outputText value="La date"></h:outputText>
+		<h:column>
+			<br/>
+			<h:outputText value="#{activite.seance.dateDebut}">
+   				<f:convertDateTime pattern="'Le' dd MMMM 'de' HH:mm 'à' "/>
+   			</h:outputText>
+   			<h:outputText value="#{activite.seance.dateFin}">
+   				<f:convertDateTime pattern="HH:mm"/>
+   			</h:outputText>
+		</h:column>
+	</h:column>
+	<h:column rendered="#{activiteDetailControl.getTypeOfActivite() == 0}">
+		<h:outputText value="Il n'y a aucune activité pour le moment !"></h:outputText>
 	</h:column>
   </h:dataTable>
 </h:body>
