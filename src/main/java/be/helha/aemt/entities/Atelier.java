@@ -31,6 +31,13 @@ public class Atelier extends Activite{
 	private double tarif;
 
 
+	public Atelier(String nom, String description, Adresse adresse, Seance seance, Utilisateur instructeur,
+			double tarif) {
+		super(nom, description, adresse);
+		this.seance = seance;
+		this.instructeur = instructeur;
+		this.tarif = tarif;
+	}
 	
 	public Atelier(String nom, String description, Adresse adresse, Seance seance,Images image, Utilisateur instructeur,
 			double tarif) {

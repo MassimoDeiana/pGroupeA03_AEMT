@@ -33,7 +33,14 @@ public class Cours extends Activite{
 	private Utilisateur instructeur;
 	
 	private double tarif;
-
+	
+	public Cours(String nom, String description, Adresse adresse, Utilisateur instructeur,
+			double tarif) {
+		super(nom, description, adresse);
+		this.seances = new ArrayList<Seance>();
+		this.instructeur = instructeur;
+		this.tarif = tarif;
+	}
 	
 	
 	public Cours(String nom, String description, Adresse adresse,Images image, Utilisateur instructeur,

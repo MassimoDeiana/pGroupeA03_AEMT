@@ -39,6 +39,12 @@ public class Activite implements Serializable{
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	private Images image;
 	
+	public Activite(String nom, String description, Adresse adresse) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.adresse = adresse;
+	}
 	
 	public Activite(String nom, String description, Adresse adresse,Images image) {
 		super();

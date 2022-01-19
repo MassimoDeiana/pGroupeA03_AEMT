@@ -18,7 +18,10 @@ public class Evenement extends Activite{
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Seance seance;
 
-	
+	public Evenement(String nom, String description, Adresse adresse, Seance seance) {
+		super(nom, description, adresse);
+		this.seance = seance;
+	}
 	
 	public Evenement(String nom, String description, Adresse adresse,Images image, Seance seance) {
 		super(nom, description, adresse,image);
