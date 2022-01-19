@@ -14,11 +14,22 @@ import be.helha.aemt.entities.Utilisateur;
 @RequestScoped
 public class UtilisateurDetailControl {
 
-	@EJB
-	private UtilisateurEJB ejb;
-	
-	private Utilisateur utilisateur;
-	
+    @EJB
+    private UtilisateurEJB ejb;
+
+    private Utilisateur utilisateur;
+
+    public void removeActivite(Activite activite) {
+        Utilisateur tmp = ejb.findByMail(
+				new Utilisateur(
+						FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName()
+						)
+				);
+        utilisateur = tmp;
+        tmp.removeActivite(activite);
+        ejb.update(utilisateur, tmp);
+    }
+
 	@PostConstruct
 	public void init() {
 		utilisateur = (Utilisateur) FacesContext.getCurrentInstance().getExternalContext().getFlash().get("utilisateur");
@@ -31,7 +42,6 @@ public class UtilisateurDetailControl {
 	public void setUtilisateur(Utilisateur Utilisateur) {
 		this.utilisateur = Utilisateur;
 	}
-    
 
 	public int getSizeofActivities() {
 		if(utilisateur!=null)

@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 <head>
-
+<link rel="stylesheet" href="./style.css"></link>
 <title>Liste</title>
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-
   <h:form>
   <nav>
 	  <ul>
@@ -18,7 +17,6 @@
 	  </ul>
   </nav>
   </h:form>
-  
     <h1>Liste des utilisateurs</h1>
     <h:dataTable value="#{utilisateurControl.findAll()}" var="utilisateur">
         <h:column>

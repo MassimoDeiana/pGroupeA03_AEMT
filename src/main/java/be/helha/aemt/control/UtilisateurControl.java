@@ -36,7 +36,6 @@ public class UtilisateurControl {
 	public void init() {
 		System.out.println(ejb);
 		utilisateur = new Utilisateur();
-		t = utilisateur;
 	}
 	
 	public String doAdd() {
@@ -74,6 +73,10 @@ public class UtilisateurControl {
         return ejb.findAll();
     }
 	
+	public Utilisateur getLogged() {
+        Utilisateur u = new Utilisateur(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
+        return ejb.findByMail(u);
+    }
 	
 	public String doGetDetails(Utilisateur pub) {
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().put("utilisateur", pub);
@@ -85,31 +88,31 @@ public class UtilisateurControl {
        ejb.delete(Utilisateur);
     }
 	
-
 	public String updateDirection(Utilisateur pub) {
 		utilisateur=pub;
 		return "updateUtilisateur";
 	}
 	
-	public int getRole() {
-		Utilisateur u = getLogged();
-		if(u!=null)
-		{
-			switch(u.getRole())
-			{
-			case "admin":return 1;
-			case "utilisateur":return 2;
-			case "instructeur":return 2;
-			default:return 0;
-			}
-		}
-		return 0;
+	public int getSizeofActivities() {
+		return getLogged().getActivites().size();
 	}
 	
-	public Utilisateur getLogged() {
-		Utilisateur u = new Utilisateur(FacesContext.getCurrentInstance().getExternalContext().getRemoteUser());
-		return ejb.findByMail(u);
+	public int getRole() {
+        Utilisateur u = getLogged();
+        if(u!=null)
+        {
+            switch(u.getRole())
+            {
+            case "admin":return 1;
+            case "utilisateur":return 2;
+            case "instructeur":return 2;
+            default:return 0;
+            }
+        }
+        return 0;
 	}
+	
+
 	
 
 	public void removeActivite(Activite activite,Utilisateur u) {		
@@ -122,6 +125,7 @@ public class UtilisateurControl {
 	
 	
 	
+
 	public static String encode(final String clearText) throws NoSuchAlgorithmException {
         return new String(
                 Base64.getEncoder().encode(MessageDigest.getInstance("SHA-256").digest(clearText.getBytes(StandardCharsets.UTF_8))));

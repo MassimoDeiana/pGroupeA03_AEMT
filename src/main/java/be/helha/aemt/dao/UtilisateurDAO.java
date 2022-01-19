@@ -73,7 +73,7 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
         String qUtilisateur = "Select u from Utilisateur u where u.activites=:activites";
         Query queryUtilisateur = em.createQuery(qUtilisateur);
 
-        queryUtilisateur.setParameter("activites", u.getActivites().get(0));
+        queryUtilisateur.setParameter("activites", u.getActivites());
 
         List<Utilisateur> utilisateurList = queryUtilisateur.getResultList();
 
@@ -154,6 +154,7 @@ public class UtilisateurDAO extends DAOJTA<Utilisateur> {
         }
 
         uDB1.setActivites(t2.getActivites());
+
 
         em.merge(uDB1);
 

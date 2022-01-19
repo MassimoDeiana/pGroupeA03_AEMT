@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<html xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <link rel="stylesheet" href="./style.css"></link>
 <title>Profil</title>
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <h:body>
-  <h2>Liste des ateliers</h2>
+  <h2>Profil</h2>
   <nav>
 	  <ul>
 		  <li><h:link outcome="#{navigationControl.doPleineConscience()}" value="PleineConscience"/></li>
@@ -20,6 +20,27 @@
 		  <li><h:link rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
 	  </ul>
   </nav>
+  
+  <h:dataTable value="#{utilisateurControl.getLogged()}" var="utilisateur">
+  	<h:column rendered="#{utilisateurControl.getSizeofActivities() != 0}">
+		<h:outputText value="#{utilisateur.nom} #{utilisateur.prenom}" />
+   		<h:dataTable value="#{utilisateur.activites}" var="activite">
+            <h:column>
+        		<h:form>
+	            	<h:commandLink value="#{activite.nom}" action="#{activiteControl.doGetDetails(activite)}" />
+            	</h:form>
+        	</h:column>
+            <h:column>
+                <h:form>
+                    <h:commandButton value="X" action="#{utilisateurDetailControl.removeActivite(activite)}"></h:commandButton>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+	</h:column>
+	<h:column rendered="#{utilisateurControl.getSizeofActivities() == 0}">
+		<h:outputText value="Bonjour #{utilisateur.prenom}, vous n'avez pas d'activités pour l'instant !" />
+	</h:column>
+   </h:dataTable>
   
   
 </h:body>

@@ -52,30 +52,34 @@ public class ActiviteControl {
     
     public String doGetDetails(Activite a) {
     	activite = a;
-    	utilisateur = new Utilisateur(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
-    	Utilisateur uInit = utilisateurEJB.findByMail(utilisateur);
-//TODO    	utilisateur.setActivites(uInit.getActivites());
-    	System.out.println(utilisateur);
-    	utilisateur.addActivite(activite);
-    	utilisateurEJB.update(uInit, utilisateur);
-    	
-    	return "detailActivite";
+    	FacesContext.getCurrentInstance().getExternalContext().getFlash().put("activite", activite);
+    	return "/utilisateur/detailActivite.xhtml?faces-redirect=true";
     }
     
     public Activite getActivite() {
 		return activite;
 	}
     
-    public void doParticiper() {
-    	Utilisateur tmp = new Utilisateur();
-    	tmp.setMail(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
-    	Utilisateur uInit = utilisateurEJB.findByMail(tmp);
-    	utilisateur = uInit;
-    	utilisateur.addActivite(activite);
-    	System.out.println(uInit.getActivites());
-    	utilisateurEJB.update(uInit, utilisateur);
-    	System.out.println(uInit.getActivites());
-    	
+    public void doParticiper(Activite act) {
+		Utilisateur tmp = utilisateurEJB.findByMail(
+				new Utilisateur(
+						FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName()
+						)
+				);
+        utilisateur = tmp;
+        tmp.addActivite(act);
+        utilisateurEJB.update(utilisateur, tmp);
+//		System.out.println(activite);
+//		System.out.println("la");
+//    	Utilisateur tmp = new Utilisateur();
+//    	tmp.setMail(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
+//    	Utilisateur uInit = utilisateurEJB.findByMail(tmp);
+//    	utilisateur = uInit;
+//    	utilisateur.addActivite(activite);
+//    	System.out.println(uInit.getActivites());
+//    	utilisateurEJB.update(uInit, utilisateur);
+//    	System.out.println(uInit.getActivites());
+//    	return "/utilisateur/profil.xhtml?faces-redirect=true";
     }
     
 	

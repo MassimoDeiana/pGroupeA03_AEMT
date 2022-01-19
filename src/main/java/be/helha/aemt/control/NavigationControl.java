@@ -31,8 +31,8 @@ public class NavigationControl {
 	}
 	
 	public String doRegister() {
-        return "/register.xhtml?faces-redirect=true";
-    }
+		return "/register.xhtml?faces-redirect=true";
+	}
 
     public String doLogin() {
         return "/login.xhtml?faces-redirect=true";
@@ -61,7 +61,6 @@ public class NavigationControl {
 	public String doIndexAdmin() {
 		return "/admin/indexAdmin.xhtml?faces-redirect=true";
 	}
-	
 
 	public String doAjoutAtelier() {
 		return "/admin/ajoutAtelier.xhmlt?faces-redirect=true";

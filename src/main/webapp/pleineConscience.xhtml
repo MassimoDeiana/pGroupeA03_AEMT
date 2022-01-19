@@ -27,9 +27,23 @@
   <h3>1. Événements</h3>
   <h:dataTable value="#{activiteControl.doFindAllEvenement()}" var="evenement">
         <h:column>
-            <f:facet name="header">Description</f:facet>
-            <h:outputText value="#{evenement.description}" />
-        </h:column>
+   		<h:form>
+			<h:commandLink value="#{evenement.nom}" action="#{activiteControl.doGetDetails(evenement)}" />
+    	<h:outputText value="#{evenement.seance.dateDebut}" >
+    		<f:convertDateTime pattern=" 'du' dd MMMM"/>
+    	</h:outputText>
+    	<h:outputText value="#{evenement.seance.dateFin}">
+    		<f:convertDateTime pattern=" 'au' dd MMMM"/>
+    	</h:outputText>
+    	<h:outputText value="#{evenement.seance.dateDebut}">
+    		<f:convertDateTime pattern=" 'de' HH'h'mm"/>
+    	</h:outputText>
+    	<h:outputText value="#{evenement.seance.dateFin}">
+    		<f:convertDateTime pattern=" 'à' HH'h'mm'. Infos ' "/>
+    	</h:outputText>
+			<h:commandLink value="ici" action="#{activiteControl.doGetDetails(evenement)}" />
+		</h:form>
+		</h:column>
    </h:dataTable>
    
    <h3>2. Cours</h3>
@@ -48,9 +62,14 @@
     		<f:convertDateTime pattern=" 'de' HH'h'mm"/>
     	</h:outputText>
     	<h:outputText value="#{cours.seances.get(0).dateFin}">
-    		<f:convertDateTime pattern=" 'à' HH'h'mm'. Infos et inscription' "/>
+    		<f:convertDateTime pattern=" 'à' HH'h'mm'. Infos ' "/>
     	</h:outputText>
 			<h:commandLink value="ici" action="#{activiteControl.doGetDetails(cours)}" />
+		</h:form>
+	</h:column>
+	<h:column rendered="#{utilisateurControl.getRole() != 0}">
+		<h:form>
+			<h:commandButton value="Participer" action="#{activiteControl.doParticiper(cours)}" />
 		</h:form>
 	</h:column>
    </h:dataTable>
@@ -58,24 +77,29 @@
    <h3>3. Ateliers</h3>
    <h:dataTable value="#{activiteControl.doFindAllAtelier()}" var="atelier">
         <h:column>
-        	<h:form>
-	            <f:facet name="header">Description</f:facet>
-	            <h:commandLink value="#{atelier.description}" action="#{activiteControl.doGetDetails(atelier)}" />
-            </h:form>
-        </h:column>
-        <h:column>
-            <f:facet name="header">Tarif</f:facet>
-            <h:outputText value="#{atelier.tarif}" />
-        </h:column>
-        <h:column>
-            <f:facet name="header">Séance</f:facet>
-            <h:outputText value="#{atelier.seance.dateDebut}">
-            	<f:convertDateTime pattern="'le' dd MMMM 'de' HH'h'mm "/>
-            </h:outputText>
-           <h:outputText value="#{atelier.seance.dateFin}">
-            	<f:convertDateTime pattern="'à' HH'h'mm"/>
-            </h:outputText>
-        </h:column>
+   		<h:form>
+			<h:commandLink value="#{atelier.nom}" action="#{activiteControl.doGetDetails(atelier)}" />
+    	<h:outputText value=" à #{atelier.adresse.ville} par #{atelier.instructeur} " />
+    	<h:outputText value="#{atelier.seance.dateDebut}" >
+    		<f:convertDateTime pattern=" 'du' dd MMMM"/>
+    	</h:outputText>
+    	<h:outputText value="#{atelier.seance.dateFin}">
+    		<f:convertDateTime pattern=" 'au' dd MMMM"/>
+    	</h:outputText>
+    	<h:outputText value="#{atelier.seance.dateDebut}">
+    		<f:convertDateTime pattern=" 'de' HH'h'mm"/>
+    	</h:outputText>
+    	<h:outputText value="#{atelier.seance.dateFin}">
+    		<f:convertDateTime pattern=" 'à' HH'h'mm'. Infos ' "/>
+    	</h:outputText>
+			<h:commandLink value="ici" action="#{activiteControl.doGetDetails(atelier)}" />
+		</h:form>
+	</h:column>
+	<h:column rendered="#{utilisateurControl.getRole() != 0}">
+		<h:form>
+			<h:commandButton value="Participer" action="#{activiteControl.doParticiper(atelier)}" />
+		</h:form>
+	</h:column>
    </h:dataTable>
   
 </h:body>
