@@ -13,6 +13,7 @@ import be.helha.aemt.entities.Utilisateur;
 
 @Stateless
 @LocalBean
+
 public class ActiviteEJB {
 
 	@EJB

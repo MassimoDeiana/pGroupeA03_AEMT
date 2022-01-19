@@ -1,12 +1,21 @@
 package be.helha.aemt.control;
 
+import java.awt.image.BufferedImage; 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.InputStream;
+import java.util.Base64;
 import java.util.List;  
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.imageio.ImageIO;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.swing.ImageIcon;
+
 
 import be.helha.aemt.ejb.AtelierEJB;
 import be.helha.aemt.ejb.CoursEJB;
@@ -46,6 +55,7 @@ public class ActiviteControl {
         return coursEJB.findAll();
     }
     
+        
     public List<Atelier> doFindAllAtelier() {
         return atelierEJB.findAll();
     }
@@ -81,6 +91,9 @@ public class ActiviteControl {
 //    	System.out.println(uInit.getActivites());
 //    	return "/utilisateur/profil.xhtml?faces-redirect=true";
     }
-    
+   
+
 	
+    
+    
 }

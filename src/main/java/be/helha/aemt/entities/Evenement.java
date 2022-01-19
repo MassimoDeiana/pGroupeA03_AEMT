@@ -20,8 +20,8 @@ public class Evenement extends Activite{
 
 	
 	
-	public Evenement(String nom, String description, Adresse adresse, Seance seance) {
-		super(nom, description, adresse);
+	public Evenement(String nom, String description, Adresse adresse,Images image, Seance seance) {
+		super(nom, description, adresse,image);
 		this.seance = seance;
 	}
 

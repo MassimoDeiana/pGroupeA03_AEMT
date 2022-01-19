@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html">
-<head>
+<html xmlns:jsf="http://xmlns.jcp.org/" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+xmlns:p="http://primefaces.org/ui"
+xmlns="https://www.w3.org/1999/xhtml"
+xmlns:ui="https://java.sun.com/jsf/facelets">
+<h:head>
 <link rel="stylesheet" href="./style.css"></link>
+<script name="jquery/jquery.js" library="primefaces"></script>
 <title>Agenda</title>
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
-</head>
+</h:head>
 <h:body>
   <h2>Agenda</h2>
   <h:form>
@@ -21,7 +25,13 @@
 		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
 	  </ul>
   </nav>
+  
+	<h:form>
+  		<p:schedule value="#{scheduleBean.eventModel}"/>
+  	</h:form>  
+  
   </h:form>
   
 </h:body>
+
 </html>

@@ -74,6 +74,12 @@ public class Seance implements Serializable {
 		Seance other = (Seance) obj;
 		return Objects.equals(dateDebut, other.dateDebut) && Objects.equals(dateFin, other.dateFin);
 	}
+
+	@Override
+	public String toString() {
+		return "Seance [id=" + id + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + "]";
+	}
+	
 	
 	
 	

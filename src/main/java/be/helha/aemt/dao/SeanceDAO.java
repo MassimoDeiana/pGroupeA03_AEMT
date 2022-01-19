@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
+import be.helha.aemt.entities.Evenement;
 import be.helha.aemt.entities.Seance;
 import be.helha.aemt.entities.Utilisateur;
 
@@ -90,5 +91,35 @@ public class SeanceDAO extends DAOJTA<Seance> {
 
         return aDB;
 	}
+	
+	public List<Seance> getAtelierSeance(Integer id) {
+        
+        String qSearch="SELECT a.seance FROM Atelier a where a.id=:id";
+        Query queryFind = em.createQuery(qSearch);
+        queryFind.setParameter("id", id);
+        List<Seance> seanceList = queryFind.getResultList();
+        
+        return seanceList.isEmpty()?null : seanceList;  
+    }
+	
+	public List<Seance> getEvenementSeance(Integer id) {
+        
+        String qSearch="SELECT a.seance FROM Evenement a where a.id=:id";
+        Query queryFind = em.createQuery(qSearch);
+        queryFind.setParameter("id", id);
+        List<Seance> seanceEvenement = queryFind.getResultList();
+        
+        return seanceEvenement.isEmpty()?null : seanceEvenement;  
+    }
+	
+	public List<Seance> getCoursSeance(Integer id) {
+        
+        String qSearch="SELECT a.seances FROM Cours a where a.id=:id";
+        Query queryFind = em.createQuery(qSearch);
+        queryFind.setParameter("id", id);
+        List<Seance> seanceCours = queryFind.getResultList();
+        
+        return seanceCours.isEmpty()?null : seanceCours;  
+    }
 
 }

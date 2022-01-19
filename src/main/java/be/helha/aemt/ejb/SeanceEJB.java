@@ -12,6 +12,7 @@ import be.helha.aemt.entities.Seance;
 
 @Stateless
 @LocalBean
+
 public class SeanceEJB {
 
 	@EJB
@@ -34,4 +35,17 @@ public class SeanceEJB {
 	public Seance delete(Seance u) {
 		return dao.delete(u);
 	}
+	
+	public List<Seance> getAtelierSeance(Integer id) {
+		return dao.getAtelierSeance(id);
+	}
+	
+	public List<Seance> getEvenementSeance(Integer id) {
+		return dao.getEvenementSeance(id);
+	}
+
+	public List<Seance> getCoursSeance(Integer id) {
+		return dao.getCoursSeance(id);
+	}
+
 }
