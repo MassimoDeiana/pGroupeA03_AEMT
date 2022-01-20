@@ -63,7 +63,7 @@ public class ActiviteControl {
     public String doGetDetails(Activite a) {
     	activite = a;
     	FacesContext.getCurrentInstance().getExternalContext().getFlash().put("activite", activite);
-    	return "/utilisateur/detailActivite.xhtml?faces-redirect=true";
+    	return "/detailActivite.xhtml?faces-redirect=true";
     }
     
     public Activite getActivite() {
@@ -79,17 +79,6 @@ public class ActiviteControl {
         utilisateur = tmp;
         tmp.addActivite(act);
         utilisateurEJB.update(utilisateur, tmp);
-//		System.out.println(activite);
-//		System.out.println("la");
-//    	Utilisateur tmp = new Utilisateur();
-//    	tmp.setMail(FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal().getName());
-//    	Utilisateur uInit = utilisateurEJB.findByMail(tmp);
-//    	utilisateur = uInit;
-//    	utilisateur.addActivite(activite);
-//    	System.out.println(uInit.getActivites());
-//    	utilisateurEJB.update(uInit, utilisateur);
-//    	System.out.println(uInit.getActivites());
-//    	return "/utilisateur/profil.xhtml?faces-redirect=true";
     }
    
 

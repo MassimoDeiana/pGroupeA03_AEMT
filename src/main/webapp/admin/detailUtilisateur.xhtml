@@ -4,15 +4,19 @@
 <link rel="stylesheet" href="./style.css"></link>
 <title>Liste</title>
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="../style.css"></link>
 </head>
 <body>
   <h:form>
   <nav>
 	  <ul>
  		  <li><h:commandLink action="#{navigationControl.doListeActivite()}" value="Gestion des activites"/></li>
-		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
-		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur()}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur()}" value="Ajouter des utilisateurs"/></li>
 		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutEvenement()}" value="Ajouter des evenements"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutCours()}" value="Ajouter des cours"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAgenda()}" value="Agenda"/></li>
 		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
 	  </ul>
   </nav>
@@ -37,15 +41,11 @@
          <h:dataTable value="#{utilisateurDetailControl.getUtilisateur().activites}" var="activite">
             <h:column>
                 <f:facet name="header">activite</f:facet>
-                #{activite.nom}
+            <h:form>
+				<h:commandLink value="#{activite.nom}" action="#{activiteControl.doGetDetails(activite)}" />
+			</h:form>
             </h:column>
 
-            <h:column>
-                <f:facet name="header">Delete</f:facet>
-                <h:form>
-                    <h:commandButton value="X" action="#{utilisateurDetailControl.removeActivite(activite)}"></h:commandButton>
-                </h:form>
-            </h:column>
         </h:dataTable>
 </body>
 </html>

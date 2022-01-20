@@ -66,6 +66,14 @@ public class NavigationControl {
 		return "/admin/ajoutAtelier.xhmlt?faces-redirect=true";
 	}
 	
+	public String doAjoutCours() {
+		return "/admin/ajoutCours.xhtml?faces-redirect=true";
+	}
+	
+	public String doAjoutEvenement() {
+		return "/admin/ajoutEvenement.xhtml?faces-redirect=true";
+	}
+	
 	public String doAjoutUtilisateur() {
 		return "/admin/ajoutUtilisateur.xhtml?face-redirect=true";
 	}
@@ -77,6 +85,8 @@ public class NavigationControl {
 	public String doListeActivite() {
 		return "/admin/listeActivite.xhtml?face-redirect=true";
 	}
+	
+	
 	
 	
 }

@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
 <head>
-<link rel="stylesheet" href="./style.css"></link>
+<link rel="stylesheet" href="../style.css"></link>
 <title>Profil</title>
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <h:body>
   <h2>Profil</h2>
+  <h:form>
   <nav>
 	  <ul>
-		  <li><h:link outcome="#{navigationControl.doPleineConscience()}" value="PleineConscience"/></li>
-		  <li><h:link outcome="#{navigationControl.doAteliers()}" value="Ateliers"/></li>
-		  <li><h:link outcome="agenda" value="Agenda"/></li>
-		  <li><h:link outcome="#{navigationControl.doQuiSommesNous()}" value="Qui sommes nous ?"/></li>
-		  <li><h:link rendered="#{utilisateurControl.getRole() == 2}" outcome="#{navigationControl.doProfil()}" value="Profil"/></li>
-		  <li><h:link rendered="#{utilisateurControl.getRole() == 0}" outcome="#{navigationControl.doLogin()}" value="Me connecter"/></li>
-		  <li><h:link rendered="#{utilisateurControl.getRole() == 0}" outcome="#{navigationControl.doRegister()}" value="Me créer un profil"/></li>
-		  <li><h:link rendered="#{utilisateurControl.getRole() == 1}" outcome="#{navigationControl.doIndexAdmin()}" value="Admin"/></li>
-		  <li><h:link rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
+ 		  <li><h:commandLink action="#{navigationControl.doPleineConscience()}" value="PleineConscience"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAteliers()}" value="Ateliers"/></li>
+		  <li><h:commandLink action="agenda" value="Agenda"/></li>
+		  <li><h:commandLink action="#{navigationControl.doQuiSommesNous()}" value="Qui sommes nous ?"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 2}" action="#{navigationControl.doProfil()}" value="Profil"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 0}" action="#{navigationControl.doLogin()}" value="Me connecter"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 0}" action="#{navigationControl.doRegister()}" value="Me créer un profil"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() == 1}" action="#{navigationControl.doIndexAdmin()}" value="Admin"/></li>
+		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
 	  </ul>
   </nav>
-  
+  </h:form>
+  <h2>Activités auxquelles je participe</h2>
   <h:dataTable value="#{utilisateurControl.getLogged()}" var="utilisateur">
   	<h:column rendered="#{utilisateurControl.getSizeofActivities() != 0}">
 		<h:outputText value="#{utilisateur.nom} #{utilisateur.prenom}" />
    		<h:dataTable value="#{utilisateur.activites}" var="activite">
+   		
             <h:column>
         		<h:form>
+        		   		  
+       				<br/>
 	            	<h:commandLink value="#{activite.nom}" action="#{activiteControl.doGetDetails(activite)}" />
+	            	<h:commandButton value="X" action="#{utilisateurDetailControl.removeActivite(activite)}"></h:commandButton>
             	</h:form>
         	</h:column>
-            <h:column>
-                <h:form>
-                    <h:commandButton value="X" action="#{utilisateurDetailControl.removeActivite(activite)}"></h:commandButton>
-                </h:form>
-            </h:column>
+
         </h:dataTable>
 	</h:column>
 	<h:column rendered="#{utilisateurControl.getSizeofActivities() == 0}">

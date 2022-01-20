@@ -4,15 +4,19 @@
 <link rel="stylesheet" href="./style.css"></link>
 <title>Liste</title>
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="../style.css"></link>
 </head>
 <body>
   <h:form>
   <nav>
 	  <ul>
  		  <li><h:commandLink action="#{navigationControl.doListeActivite()}" value="Gestion des activites"/></li>
-		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
-		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur()}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur()}" value="Ajouter des utilisateurs"/></li>
 		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutEvenement()}" value="Ajouter des evenements"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutCours()}" value="Ajouter des cours"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAgenda()}" value="Agenda"/></li>
 		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
 	  </ul>
   </nav>
@@ -22,7 +26,7 @@
         <h:column>
             <f:facet name="header">Nom</f:facet>
             <h:form>
-            	<h:commandLink  value="#{utilisateur.nom}" action="#{utilisateurControl.doGetDetails(utilisateur)}"></h:commandLink>
+            	#{utilisateur.nom}
             </h:form>
         </h:column>
 

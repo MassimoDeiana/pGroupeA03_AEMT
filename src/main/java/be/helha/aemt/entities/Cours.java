@@ -51,7 +51,9 @@ public class Cours extends Activite{
 		this.tarif = tarif;
 	}
 	
-	public Cours() {}
+	public Cours() {
+		this.seances = new ArrayList<Seance>();
+	}
 
 	public List<Seance> getSeances() {
 		List<Seance> sortedList = seances.stream()

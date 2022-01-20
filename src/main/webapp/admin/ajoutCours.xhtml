@@ -5,49 +5,51 @@
   xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:c="http://java.sun.com/jsp/jstl/core"
   xmlns:b="http://bootsfaces.net/ui"
-  xmlns:p="http://primefaces.org/ui">
+  xmlns:p="http://primefaces.org/ui"
+  xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
 
 <head>
 	<title>Ajout atelier</title>
 	<meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
+	<link rel="stylesheet" href="../style.css"></link>
 </head>
 <h:body>
-  <h2>Navigation</h2>
-   <h:form>
+  <h:form>
   <nav>
 	  <ul>
  		  <li><h:commandLink action="#{navigationControl.doListeActivite()}" value="Gestion des activites"/></li>
-		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
-		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur()}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur()}" value="Ajouter des utilisateurs"/></li>
 		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutEvenement()}" value="Ajouter des evenements"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutCours()}" value="Ajouter des cours"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAgenda()}" value="Agenda"/></li>
 		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
 	  </ul>
   </nav>
   </h:form>
  
   		<h:form>
-  			<h1>Ajout d'un atelier</h1>
-			Nom   <h:inputText value="#{atelierControl.atelier.nom}"></h:inputText>
+  			<h1>Ajout d'un cours</h1>
+			Nom   <h:inputText a:placeholder="Atelier" value="#{coursControl.cours.nom}"></h:inputText>
 			<br/>
 			<br/>
 			
-			Description   <h:inputText value="#{atelierControl.atelier.description}" ></h:inputText>
+			Description   <h:inputText a:placeholder="Description" value="#{coursControl.cours.description}" ></h:inputText>
 			<br/>
 			<br/>
-		
-			Date de début   <b:dateTimePicker value="#{atelierControl.seance.dateDebut}" ></b:dateTimePicker>
-			<br/>
-			<br/>
-			Date de fin   <b:dateTimePicker value="#{atelierControl.seance.dateFin}"></b:dateTimePicker>
-			<br/>
-			<br/>
-			  
 			   
-			<b>Instructeurs</b>
+
+			Date de début   <h:inputText a:placeholder="AAAA/MM/JJ HH:mm:SS" value="#{coursControl.dateDebut}"></h:inputText>
+			<br/>
+			<br/>
+			Date de fin   <h:inputText a:placeholder="AAAA/MM/JJ HH:mm:SS"  value="#{coursControl.dateFin}"></h:inputText>
+			<br/>
+			<br/>
 
 <!-- 	EJB NULL DANS CONVERTER			 -->
-<!-- 				<h:selectOneListbox value="#{atelierControl.atelier.instructeur}" converterId="utilisateurConverter" > -->
-<!-- 			   		<f:selectItems value="#{atelierControl.instructeurs}" var="instructeur" itemLabel="#{instructeur.nom}" itemValue="#{instructeur}"></f:selectItems> -->
+<!-- 				<h:selectOneListbox value="#{coursControl.cours.instructeur}" converterId="utilisateurConverter" > -->
+<!-- 			   		<f:selectItems value="#{coursControl.instructeurs}" var="instructeur" itemLabel="#{instructeur.nom}" itemValue="#{instructeur}"></f:selectItems> -->
 					
 <!-- 				</h:selectOneListbox> -->
 				
@@ -57,24 +59,31 @@
 				
 			<b>Adresse</b>	
 			<br/>
-			Rue   <h:inputText value="#{atelierControl.adresse.rue}"></h:inputText>
+			Rue   <h:inputText  a:placeholder="Rue du moulin" value="#{coursControl.adresse.rue}"></h:inputText>
 			<br/>
 			<br/>
-			Numero   <h:inputText value="#{atelierControl.adresse.numero}"></h:inputText>
+			Numero   <h:inputText a:placeholder="54" value="#{coursControl.adresse.numero}"></h:inputText>
 			<br/>
 			<br/>
-			Ville   <h:inputText value="#{atelierControl.adresse.ville}"></h:inputText>
+			Ville   <h:inputText a:placeholder="Mons" value="#{coursControl.adresse.ville}"></h:inputText>
 			<br/>
 			<br/>
-			Code Postal   <h:inputText value="#{atelierControl.adresse.codePostal}"></h:inputText>
+			Code Postal   <h:inputText a:placeholder="7000" value="#{coursControl.adresse.codePostal}"></h:inputText>
 			<br/>
 			<br/>
 					
-			Tarifs   <h:inputText value="#{atelierControl.atelier.tarif}"></h:inputText>
+			Tarifs   <h:inputText a:placeholder="500" value="#{coursControl.cours.tarif}"></h:inputText>
 			<br/>
 			<br/>
+			
 
-			<h:commandButton value="Ajouter" action="#{atelierControl.addAtelier()}"></h:commandButton>
+
+			<h:commandButton value="Ajouter" action="#{coursControl.addCours()}"></h:commandButton>
+			
+			
+
+			
+			
 		</h:form>
   
   

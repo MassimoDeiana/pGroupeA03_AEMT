@@ -3,6 +3,7 @@ package be.helha.aemt.control;
 import java.util.List;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -39,6 +40,8 @@ public class AtelierControl {
     private SeanceEJB seanceEJB;
 	private Seance seance;
 	
+	private String dateDebut,dateFin;
+	
 	private Adresse adresse;
 
 	
@@ -66,6 +69,8 @@ public class AtelierControl {
 
 	public String addAtelier() {
 		System.out.println(seance.getDateDebut() + " : " + seance.getDateFin());
+		seance.setDateDebut(new Date(dateDebut));
+		seance.setDateFin(new Date(dateFin));
 		atelier.setSeance(seance);
 		atelier.setAdresse(adresse);
 		atelierEJB.add(atelier);
@@ -74,6 +79,22 @@ public class AtelierControl {
 	
 	
 	
+	public String getDateDebut() {
+		return dateDebut;
+	}
+
+	public void setDateDebut(String dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+	public String getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
+
 	public Atelier getAtelier() {
 		return atelier;
 	}

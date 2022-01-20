@@ -1,5 +1,7 @@
 package be.helha.aemt.control;
 
+import java.util.Date;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -23,6 +25,8 @@ public class EvenementControl {
 	private Evenement evenement;
 	private Seance seance;
 	private Adresse adresse;
+	
+	private String dateDebut,dateFin;
 	
 	@PostConstruct
 	public void init() {
@@ -66,6 +70,29 @@ public class EvenementControl {
 	public void setAdresse(Adresse adresse) {
 		this.adresse = adresse;
 	}
+	
+
+	public String getDateDebut() {
+		return dateDebut;
+	}
+
+
+
+	public void setDateDebut(String dateDebut) {
+		this.dateDebut = dateDebut;
+	}
+
+
+
+	public String getDateFin() {
+		return dateFin;
+	}
+
+
+
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
 
 
 
@@ -75,6 +102,10 @@ public class EvenementControl {
 	
 	
 	public String addEvenement() {
+		
+		
+		seance.setDateDebut(new Date(dateDebut));
+		seance.setDateFin(new Date(dateFin));
 		evenement.setSeance(seance);
 		evenement.setAdresse(adresse);
 		evenementEJB.add(evenement);

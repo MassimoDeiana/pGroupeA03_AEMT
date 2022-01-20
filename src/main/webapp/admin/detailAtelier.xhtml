@@ -4,6 +4,7 @@
 
 <title>Liste</title>
 <meta http-equiv="  Content-Type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="../style.css"></link>
 </head>
 <body>
 
@@ -11,9 +12,12 @@
   <nav>
 	  <ul>
  		  <li><h:commandLink action="#{navigationControl.doListeActivite()}" value="Gestion des activites"/></li>
-		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur}" value="Gestion des utilisateurs"/></li>
-		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur}" value="Ajouter des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doListeUtilisateur()}" value="Gestion des utilisateurs"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutUtilisateur()}" value="Ajouter des utilisateurs"/></li>
 		  <li><h:commandLink action="#{navigationControl.doAjoutAtelier()}" value="Ajouter des ateliers"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutEvenement()}" value="Ajouter des evenements"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAjoutCours()}" value="Ajouter des cours"/></li>
+		  <li><h:commandLink action="#{navigationControl.doAgenda()}" value="Agenda"/></li>
 		  <li><h:commandLink rendered="#{utilisateurControl.getRole() != 0}" action="#{logoutControl.logout()}" value="Se déconnecter"/></li>
 	  </ul>
   </nav>
